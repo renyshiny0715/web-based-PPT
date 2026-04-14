@@ -18,6 +18,8 @@ export const useGsapSections = () => {
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const tiltCleanups = [];
+
       gsap.from(".hero-copy > *", {
         opacity: 0,
         y: 30,
@@ -91,6 +93,60 @@ export const useGsapSections = () => {
           }
         });
       });
+
+      gsap.utils.toArray(".photo-strip img").forEach((img) => {
+        gsap.from(img, {
+          opacity: 0,
+          y: 26,
+          scale: 0.94,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: img,
+            start: "top 92%"
+          }
+        });
+
+        gsap.to(img, {
+          yPercent: -7,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      });
+
+      if (window.innerWidth > 980) {
+        gsap.utils.toArray(".feature-card, .highlight-grid div, .kpi-grid div").forEach((el) => {
+          const onMove = (event) => {
+            const rect = el.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width - 0.5;
+            const py = (event.clientY - rect.top) / rect.height - 0.5;
+            gsap.to(el, {
+              rotateY: px * 5,
+              rotateX: -py * 5,
+              transformPerspective: 700,
+              transformOrigin: "center",
+              duration: 0.25
+            });
+          };
+          const onLeave = () => {
+            gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.35 });
+          };
+          el.addEventListener("pointermove", onMove);
+          el.addEventListener("pointerleave", onLeave);
+          tiltCleanups.push(() => {
+            el.removeEventListener("pointermove", onMove);
+            el.removeEventListener("pointerleave", onLeave);
+          });
+        });
+      }
+
+      return () => {
+        tiltCleanups.forEach((fn) => fn());
+      };
     });
 
     return () => {

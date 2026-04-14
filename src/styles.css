@@ -32,6 +32,52 @@ body {
   padding: 0 20px 80px;
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #1b2842;
+  z-index: 120;
+}
+
+.scroll-progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #64d5ff, #8f79ff);
+  transition: width 0.12s linear;
+}
+
+.scroll-assist {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 110;
+  display: grid;
+  gap: 7px;
+}
+
+.scroll-assist button {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid #3b5685;
+  background: #0d1730d8;
+  color: #9ec8f8;
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.scroll-assist button.active {
+  border-color: #64d5ff;
+  color: #051523;
+  background: #64d5ff;
+  font-weight: 700;
+}
+
 .noise-layer {
   position: fixed;
   inset: 0;
@@ -452,6 +498,31 @@ body {
   color: #d5e8ff;
 }
 
+.photo-strip {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
+}
+
+.photo-strip img {
+  flex: 0 0 260px;
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #3a5684;
+  scroll-snap-align: center;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.photo-strip img:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #64d5ff;
+}
+
 .quote-line {
   margin-top: 12px !important;
   color: #93d9ff !important;
@@ -634,6 +705,33 @@ body {
     padding: 22px;
     margin-top: 28px;
     border-radius: 18px;
+  }
+
+  .scroll-assist {
+    right: 8px;
+    top: auto;
+    bottom: 12px;
+    transform: none;
+    display: flex;
+    overflow-x: auto;
+    max-width: calc(100vw - 16px);
+    padding: 6px;
+    border: 1px solid #2c446d;
+    border-radius: 999px;
+    background: #0b1326d8;
+    backdrop-filter: blur(4px);
+  }
+
+  .scroll-assist button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+
+  .photo-strip img {
+    flex-basis: 72vw;
+    width: 72vw;
+    height: 170px;
   }
 
   .bar-row {

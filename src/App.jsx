@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import HeroSection from "./components/HeroSection";
 import ChapterSections from "./components/ChapterSections";
+import ScrollAssist from "./components/ScrollAssist";
 import { useGsapSections } from "./hooks/useGsapSections";
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <ScrollAssist />
       <div className="noise-layer" />
       <div className="gradient-orb orb-1" />
       <div className="gradient-orb orb-2" />

@@ -1,3 +1,11 @@
+const PhotoStrip = ({ images }) => (
+  <div className="photo-strip reveal-item">
+    {images.map((image) => (
+      <img key={image} src={image} alt="chapter visual" loading="lazy" />
+    ))}
+  </div>
+);
+
 const ChapterSections = () => (
   <>
     <section className="section chapter-section reveal-item" id="features">
@@ -26,6 +34,13 @@ const ChapterSections = () => (
         <div><strong>2</strong><span>增长模式引擎</span></div>
         <div><strong>4+</strong><span>国际质检体系</span></div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-2">
@@ -44,6 +59,12 @@ const ChapterSections = () => (
         <div className="bar-row"><span>试错成本</span><div><i style={{ width: "78%" }} /></div><b>78</b></div>
         <div className="bar-row"><span>溢价受限</span><div><i style={{ width: "72%" }} /></div><b>72</b></div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-3">
@@ -76,6 +97,12 @@ const ChapterSections = () => (
         <div><strong>10亿+</strong><span>潜在新增人群</span></div>
         <div><strong>27%</strong><span>一人公司增长率</span></div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-5">
@@ -89,6 +116,12 @@ const ChapterSections = () => (
         <div><b>4</b><p>消费升级：品质认证驱动全球溢价支付。</p></div>
       </div>
       <p className="quote-line">技术、结构与需求三重窗口叠加。</p>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-6">
@@ -113,6 +146,13 @@ const ChapterSections = () => (
           </ul>
         </article>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-7">
@@ -125,6 +165,12 @@ const ChapterSections = () => (
         <div><strong>Layer 3</strong><p>质检服务按单收费</p></div>
         <div><strong>Layer 4</strong><p>多元收入结构增强抗周期能力</p></div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-8">
@@ -147,6 +193,12 @@ const ChapterSections = () => (
         <span>激活 12万+</span>
         <span>付费 3万+</span>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-9">
@@ -164,6 +216,12 @@ const ChapterSections = () => (
           <tr><td>系统闭环</td><td>数据持续优化</td><td>多工具割裂</td></tr>
         </tbody>
       </table>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-10">
@@ -183,6 +241,12 @@ const ChapterSections = () => (
         <div className="bar-row"><span>技术 120</span><div><i style={{ width: "11%" }} /></div><b>11%</b></div>
         <div className="bar-row"><span>运营合规 210</span><div><i style={{ width: "20%" }} /></div><b>20%</b></div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section chapter-section reveal-item" id="chapter-11">
@@ -197,6 +261,12 @@ const ChapterSections = () => (
         <div>商业价值与社会价值兼具</div>
         <div>操作系统级机会：基础设施竞争</div>
       </div>
+      <PhotoStrip
+        images={[
+          "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
+        ]}
+      />
     </section>
 
     <section className="section cta reveal-item" id="contact">
