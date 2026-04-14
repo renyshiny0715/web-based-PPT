@@ -149,6 +149,10 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   font-size: 10px;
   letter-spacing: 0.02em;
 }
+.curve-point-label {
+  fill: #cce9ff;
+  font-size: 9px;
+}
 .curve-area {
   fill: rgba(100, 213, 255, 0.2);
   opacity: 0;
@@ -190,6 +194,33 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 }
 .curve-label span { color: var(--muted); font-size: 0.78rem; }
 .curve-label b { color: #a9ddff; font-size: 1rem; }
+
+.detail-toggle {
+  margin-top: 12px;
+  border: 1px solid #36517f;
+  border-radius: 12px;
+  background: #111c34;
+  padding: 10px 12px;
+}
+.detail-toggle summary {
+  cursor: pointer;
+  color: #9ed8ff;
+  font-weight: 700;
+  list-style: none;
+}
+.detail-toggle summary::-webkit-details-marker { display: none; }
+.detail-toggle summary::after {
+  content: " +";
+  color: #7fd7ff;
+}
+.detail-toggle[open] summary::after {
+  content: " -";
+}
+.detail-toggle p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
 
 .numbered-list { display: grid; gap: 8px; }
 .numbered-list p { margin: 0; border: 1px solid #385884; border-radius: 10px; background: #111c34; padding: 10px; color: var(--muted); }
@@ -255,20 +286,28 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   .bar-row, .chapter-bar-row { grid-template-columns: 1fr; gap: 4px; }
   .media, .media.tall, .media.wide { height: 190px; }
   .curve-labels { grid-template-columns: 1fr; }
+  .curve-axis-label { font-size: 11px; }
+  .curve-point-label { font-size: 10px; }
 }
 
 @media (max-width: 760px) {
   .page {
     width: 96%;
     scroll-snap-type: y proximity;
+    padding-bottom: 28px;
   }
   .deck-section {
-    min-height: 86vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     scroll-snap-align: start;
+    padding: 16px;
+    margin-top: 16px;
   }
+  .hero { min-height: 72vh; }
+  .curve-svg { min-height: 170px; }
+  .curve-unit { font-size: 0.75rem; }
   #three-canvas { opacity: 0.95; }
   .mouse-glow { width: 180px; height: 180px; }
   .vignette-layer {
