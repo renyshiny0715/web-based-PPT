@@ -13,10 +13,10 @@ const HeroSection = () => {
     <header className="section hero" id="hero">
       <div className="hero-copy">
         <p className="eyebrow">SUPER INDIVIDUALS GLOBAL AI SAAS</p>
-        <h1>超级个体出海AI服务平台</h1>
+        <h1>超级个体出海AI操作系统</h1>
         <p>
-          全链路 AI + 双模式跨境出海 + 国际质检背书。为全球超级个体与中小企业提供
-          零门槛增长引擎。
+          全球首个全链路 AI 跨境出海操作系统：以“0风险无货源 + 有货源进阶”双模式，
+          覆盖选品、建站、营销、合规、质检、履约与售后，让普通人也能像使用应用一样完成全球生意。
         </p>
         <div className="hero-kpis">
           <div>
@@ -28,12 +28,12 @@ const HeroSection = () => {
             <span>2年累计目标用户</span>
           </div>
           <div>
-            <strong>30%+</strong>
-            <span>目标付费转化率</span>
+            <strong>20%-40%</strong>
+            <span>认证驱动溢价提升</span>
           </div>
         </div>
         <a href="#features" className="primary-btn">
-          Explore Story
+          Investor Narrative
         </a>
       </div>
       {allow3D ? <HeroScene /> : <div className="hero-scene hero-scene-fallback" />}
