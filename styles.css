@@ -12,6 +12,15 @@
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "Noto Sans SC", "Inter", sans-serif; scroll-behavior: smooth; }
 body { overflow-x: hidden; }
 
+#three-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+}
+
 .bg-glow {
   position: fixed; inset: 0;
   background:

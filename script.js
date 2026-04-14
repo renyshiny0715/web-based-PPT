@@ -19,6 +19,7 @@ const navItems = [
 const sideNav = document.getElementById("side-nav");
 const progressBar = document.getElementById("scroll-progress-bar");
 const mouseGlow = document.getElementById("mouse-glow");
+const threeCanvas = document.getElementById("three-canvas");
 
 navItems.forEach((id, idx) => {
   const btn = document.createElement("button");
@@ -62,6 +63,121 @@ window.addEventListener("pointermove", (e) => {
   mouseGlow.style.left = `${e.clientX}px`;
   mouseGlow.style.top = `${e.clientY}px`;
 }, { passive: true });
+
+const initThreeScene = () => {
+  if (!window.THREE || !threeCanvas) return;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog("#050813", 6, 18);
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: threeCanvas,
+    antialias: true,
+    alpha: true
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 80);
+  camera.position.set(0, 0.2, 6.6);
+
+  const ambient = new THREE.AmbientLight("#9cc8ff", 0.7);
+  scene.add(ambient);
+  const key = new THREE.PointLight("#7c6dff", 1.6, 24);
+  key.position.set(2.5, 1.8, 2.6);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight("#62d7ff", 1.1);
+  rim.position.set(-2.8, -1.5, 3.3);
+  scene.add(rim);
+
+  const core = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.35, 1),
+    new THREE.MeshPhysicalMaterial({
+      color: "#7f7bff",
+      metalness: 0.42,
+      roughness: 0.2,
+      transmission: 0.2,
+      thickness: 1.5,
+      clearcoat: 1,
+      clearcoatRoughness: 0.15
+    })
+  );
+  scene.add(core);
+
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(2.1, 0.03, 16, 160),
+    new THREE.MeshBasicMaterial({ color: "#64d5ff", transparent: true, opacity: 0.55 })
+  );
+  ring.rotation.x = Math.PI / 2.6;
+  scene.add(ring);
+
+  const particleCount = 260;
+  const positions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount * 3; i += 1) {
+    positions[i] = (Math.random() - 0.5) * 16;
+  }
+  const particleGeometry = new THREE.BufferGeometry();
+  particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  const particles = new THREE.Points(
+    particleGeometry,
+    new THREE.PointsMaterial({ size: 0.03, color: "#8ccaff", transparent: true, opacity: 0.75 })
+  );
+  scene.add(particles);
+
+  const sceneState = { progress: 0 };
+  gsap.to(sceneState, {
+    progress: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".page",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true
+    }
+  });
+
+  const mouse = { x: 0, y: 0 };
+  const onPointerMove = (event) => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
+  };
+  window.addEventListener("pointermove", onPointerMove, { passive: true });
+
+  let raf = 0;
+  const render = () => {
+    const p = sceneState.progress;
+    core.rotation.x += 0.003 + p * 0.001;
+    core.rotation.y += 0.004 + p * 0.0014;
+    ring.rotation.z += 0.0026;
+    particles.rotation.y += 0.0009 + p * 0.0007;
+
+    core.position.y = Math.sin(p * Math.PI * 2) * 0.4;
+    core.position.x = Math.cos(p * Math.PI * 1.5) * 0.35;
+    camera.position.z = 6.6 - p * 2.1;
+    camera.position.y = 0.2 + p * 0.8;
+    camera.position.x += (mouse.x * 0.45 - camera.position.x) * 0.03;
+    camera.lookAt(core.position);
+
+    renderer.render(scene, camera);
+    raf = requestAnimationFrame(render);
+  };
+  raf = requestAnimationFrame(render);
+
+  const onResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  };
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    cancelAnimationFrame(raf);
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("pointermove", onPointerMove);
+    renderer.dispose();
+    particleGeometry.dispose();
+  };
+};
 
 gsap.from(".hero .stagger", {
   opacity: 0,
@@ -196,7 +312,7 @@ gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, 
   });
 });
 
-gsap.from("#contact .cta > *", {
+gsap.from("#contact > *", {
   opacity: 0,
   y: 36,
   duration: 1,
@@ -208,5 +324,6 @@ gsap.from("#contact .cta > *", {
   }
 });
 
+initThreeScene();
 setProgress();
 setActiveNav();
