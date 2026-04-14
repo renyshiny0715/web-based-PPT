@@ -94,32 +94,10 @@ export const useGsapSections = () => {
         });
       });
 
-      gsap.utils.toArray(".photo-strip img").forEach((img) => {
-        gsap.from(img, {
-          opacity: 0,
-          y: 26,
-          scale: 0.94,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: img,
-            start: "top 92%"
-          }
-        });
-
-        gsap.to(img, {
-          yPercent: -7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: img,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-      });
-
       if (window.innerWidth > 980) {
-        gsap.utils.toArray(".feature-card, .highlight-grid div, .kpi-grid div").forEach((el) => {
+        gsap.utils
+          .toArray(".feature-card, .highlight-grid div, .kpi-grid div, .chapter-stat")
+          .forEach((el) => {
           const onMove = (event) => {
             const rect = el.getBoundingClientRect();
             const px = (event.clientX - rect.left) / rect.width - 0.5;

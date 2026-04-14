@@ -222,6 +222,59 @@ body {
   font-size: clamp(1.55rem, 3vw, 2.2rem);
 }
 
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.chapter-meta h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.icon-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #172747;
+  border: 1px solid #3c5a8a;
+  font-size: 1rem;
+}
+
+.chapter-summary {
+  margin: 0 0 12px;
+  color: #9cd6ff;
+  font-weight: 600;
+}
+
+.chapter-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.chapter-stat {
+  border: 1px solid #365078;
+  border-radius: 10px;
+  padding: 10px;
+  background: #121d36;
+}
+
+.chapter-stat strong {
+  display: block;
+  color: #9bd8ff;
+}
+
+.chapter-stat span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 .feature-grid,
 .showcase-grid {
   display: grid;
@@ -273,6 +326,11 @@ body {
   grid-template-columns: minmax(260px, 36%) 1fr;
   gap: 16px;
   align-items: start;
+}
+
+.chapter-media-stack {
+  display: grid;
+  gap: 10px;
 }
 
 .chapter-image {
@@ -657,6 +715,7 @@ body {
 @media (max-width: 980px) {
   .hero,
   .chapter-layout,
+  .chapter-stat-grid,
   .kpi-grid,
   .pain-grid,
   .vision-panel,
@@ -699,6 +758,10 @@ body {
 
   .section-head h2 {
     font-size: clamp(1.2rem, 6vw, 1.55rem);
+  }
+
+  .chapter-meta h2 {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
   }
 
   .section {
