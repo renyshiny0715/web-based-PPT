@@ -136,7 +136,7 @@ const HeroScene = () => {
     };
   }, []);
 
-  return <div className="hero-scene" ref={mountRef} aria-hidden="true" />;
+  return <div className="hero-scene-canvas" ref={mountRef} aria-hidden="true" />;
 };
 
 export default HeroScene;

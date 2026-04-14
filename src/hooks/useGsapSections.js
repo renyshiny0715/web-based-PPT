@@ -67,7 +67,7 @@ export const useGsapSections = () => {
 
       const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: "#showcase",
+          trigger: "#chapter-6",
           start: "top 70%",
           end: "bottom 40%",
           scrub: 0.6
@@ -75,8 +75,22 @@ export const useGsapSections = () => {
       });
 
       timeline
-        .from("#showcase .section-head", { opacity: 0, x: -60, duration: 1 }, 0)
-        .from("#showcase .showcase-card", { opacity: 0, y: 40, stagger: 0.18, duration: 1 }, 0.2);
+        .from("#chapter-6 .section-head", { opacity: 0, x: -60, duration: 1 }, 0)
+        .from("#chapter-6 .chapter-image", { opacity: 0, y: 40, scale: 0.94, duration: 1 }, 0.2)
+        .from("#chapter-6 .bullet-list li", { opacity: 0, x: 20, stagger: 0.1, duration: 0.6 }, 0.3);
+
+      gsap.utils.toArray(".chapter-image").forEach((img) => {
+        gsap.to(img, {
+          yPercent: 9,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      });
     });
 
     return () => {

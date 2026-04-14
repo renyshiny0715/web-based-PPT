@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import HeroSection from "./components/HeroSection";
-import FeaturesSection from "./components/FeaturesSection";
-import ShowcaseSection from "./components/ShowcaseSection";
-import CtaSection from "./components/CtaSection";
+import ChapterSections from "./components/ChapterSections";
 import { useGsapSections } from "./hooks/useGsapSections";
 
 const App = () => {
@@ -16,9 +14,7 @@ const App = () => {
       <Suspense fallback={<div className="loading-state">Loading experience...</div>}>
         <HeroSection />
       </Suspense>
-      <FeaturesSection />
-      <ShowcaseSection />
-      <CtaSection />
+      <ChapterSections />
     </div>
   );
 };
