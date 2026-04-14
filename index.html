@@ -20,17 +20,39 @@
     <div class="progress-track"><div id="scroll-progress"></div></div>
     <nav id="dot-nav" aria-label="章节导航"></nav>
 
-    <header class="hero panel" id="hero" data-title="封面">
-      <p class="eyebrow">Pitch Deck · Localhost Demo</p>
-      <h1>超级个体出海AI服务平台</h1>
-      <p class="lead">
-        全球首款全链路 AI + 零代码跨境出海 SaaS 平台，双模式覆盖新手到成熟卖家，
-        并接入 SGS / Intertek / UL 国际质检，打造高转化增长引擎。
-      </p>
-      <div class="hero-metrics">
+    <main>
+      <header class="hero panel" id="hero" data-title="投资主张">
+        <div class="hero-content">
+          <p class="eyebrow">SUPER INDIVIDUALS GLOBAL AI SAAS</p>
+          <h1>超级个体出海AI服务平台</h1>
+          <p class="lead">
+            全链路 AI + 双模式跨境出海 + 国际质检背书，
+            面向全球超级个体与中小企业的一站式增长基础设施。
+          </p>
+          <div class="hero-tags">
+            <span>AI 全链路</span>
+            <span>0 风险无货源</span>
+            <span>有货源进阶</span>
+            <span>SGS / Intertek / UL</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80"
+            alt="全球电商物流网络"
+            loading="eager"
+          />
+        </div>
+      </header>
+
+      <section class="panel reveal metric-row" id="snapshot" data-title="核心数据">
         <article class="metric">
           <p class="metric-value" data-target="52000">0</p>
           <p class="metric-label">2026 全球跨境电商规模（亿美元）</p>
+        </article>
+        <article class="metric">
+          <p class="metric-value" data-target="100000">0</p>
+          <p class="metric-label">2年目标累计获客（人+）</p>
         </article>
         <article class="metric">
           <p class="metric-value" data-target="30">0</p>
@@ -40,14 +62,16 @@
           <p class="metric-value" data-target="1800">0</p>
           <p class="metric-label">第2年净利润目标（万元）</p>
         </article>
-      </div>
-      <a href="#positioning" class="cta">向下滚动查看完整路演</a>
-    </header>
+      </section>
 
-    <main>
       <section class="panel reveal" id="positioning" data-title="核心定位">
         <h2>一、核心定位</h2>
-        <div class="card">
+        <div class="card with-image">
+          <img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=80"
+            alt="AI驱动的全球商业"
+            loading="lazy"
+          />
           <p>
             平台定位为<span class="highlight">“全链路 AI 出海操作系统”</span>：
             覆盖选品、建站、营销、合规质检、售后，提供 0 风险无货源模式与有货源进阶模式，
@@ -94,18 +118,24 @@
 
       <section class="panel reveal" id="market" data-title="市场机遇">
         <h2>四、市场机遇</h2>
+        <div class="grid two">
+          <div class="card chart-card">
+            <h3>全球市场规模趋势（亿美元）</h3>
+            <canvas id="market-size-chart" aria-label="全球市场规模趋势图"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>目标客群结构（2年）</h3>
+            <canvas id="user-structure-chart" aria-label="目标客群结构图"></canvas>
+          </div>
+        </div>
         <div class="timeline">
           <div class="time-item card">
-            <h3>全球市场</h3>
-            <p>2025 年全球跨境电商规模 4.8 万亿美元，2026 年预计达 5.2 万亿美元，同比增长 8.6%。</p>
-          </div>
-          <div class="time-item card">
-            <h3>国内增量</h3>
-            <p>国内跨境卖家 2000 万+，2025 年进出口总额 2.75 万亿元，2026 年预计达 4.4 万亿元。</p>
-          </div>
-          <div class="time-item card">
-            <h3>超级个体红利</h3>
+            <h3>超级个体红利持续释放</h3>
             <p>全球一人公司 2024 年突破 3200 万家，同比增长 27%，低风险出海需求爆发。</p>
+          </div>
+          <div class="time-item card">
+            <h3>增量蓝海人群巨大</h3>
+            <p>全球超 10 亿潜在副业人群、自由职业者与初创者具备强烈出海盈利诉求。</p>
           </div>
         </div>
       </section>
@@ -137,6 +167,9 @@
             <h3>双模式覆盖全人群</h3>
             <p><strong>0 风险无货源：</strong>一键代发、零囤货、零投入，3 天快速起量。</p>
             <p><strong>有货源进阶：</strong>独立站 + 供应链 + 私域沉淀 + SGS/Intertek/UL 质检。</p>
+            <div class="cert-badges">
+              <span>SGS</span><span>Intertek</span><span>UL</span>
+            </div>
           </article>
         </div>
       </section>
@@ -174,6 +207,10 @@
             <h3>裂变</h3>
             <p>邀请赠 Credits + 新用户免费试用，2 年目标获客 10 万+、转化率 30%+。</p>
           </article>
+        </div>
+        <div class="card chart-card">
+          <h3>获客漏斗与转化预测（2年）</h3>
+          <canvas id="funnel-chart" aria-label="获客漏斗图"></canvas>
         </div>
       </section>
 
@@ -243,6 +280,10 @@
             </ul>
           </article>
         </div>
+        <div class="card chart-card">
+          <h3>收入与利润路径（万元）</h3>
+          <canvas id="finance-chart" aria-label="收入利润趋势图"></canvas>
+        </div>
       </section>
 
       <section class="panel reveal" id="highlights" data-title="投资亮点">
@@ -256,12 +297,9 @@
       </section>
     </main>
 
-    <footer class="panel footer" id="contact" data-title="联系">
-      <h2>谢谢观看</h2>
-      <p>可直接作为融资会前材料链接发送给投资人，支持无登录访问。</p>
-      <p class="muted">下一步可接入英文版、产品 Demo 视频、在线留资表单与访问分析。</p>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
