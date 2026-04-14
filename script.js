@@ -20,6 +20,7 @@ const sideNav = document.getElementById("side-nav");
 const progressBar = document.getElementById("scroll-progress-bar");
 const mouseGlow = document.getElementById("mouse-glow");
 const threeCanvas = document.getElementById("three-canvas");
+const sceneLabel = document.getElementById("scene-label");
 
 navItems.forEach((id, idx) => {
   const btn = document.createElement("button");
@@ -42,6 +43,9 @@ const setActiveNav = () => {
     if (top <= window.innerHeight * 0.42) active = i;
   });
   navButtons.forEach((btn, i) => btn.classList.toggle("active", i === active));
+  const activeEl = document.getElementById(navItems[active]);
+  const title = activeEl?.querySelector("h2")?.textContent || "Immersive Deck";
+  sceneLabel.textContent = title;
 };
 
 const setProgress = () => {
@@ -104,6 +108,16 @@ const initThreeScene = () => {
   );
   scene.add(core);
 
+  const shardGroup = new THREE.Group();
+  const shardMat = new THREE.MeshBasicMaterial({ color: "#83c8ff", transparent: true, opacity: 0.45, wireframe: true });
+  for (let i = 0; i < 8; i += 1) {
+    const shard = new THREE.Mesh(new THREE.TetrahedronGeometry(0.26 + Math.random() * 0.16), shardMat);
+    const angle = (i / 8) * Math.PI * 2;
+    shard.position.set(Math.cos(angle) * (2.2 + Math.random()), (Math.random() - 0.5) * 1.6, Math.sin(angle) * (2.2 + Math.random()));
+    shardGroup.add(shard);
+  }
+  scene.add(shardGroup);
+
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(2.1, 0.03, 16, 160),
     new THREE.MeshBasicMaterial({ color: "#64d5ff", transparent: true, opacity: 0.55 })
@@ -150,6 +164,8 @@ const initThreeScene = () => {
     core.rotation.y += 0.004 + p * 0.0014;
     ring.rotation.z += 0.0026;
     particles.rotation.y += 0.0009 + p * 0.0007;
+    shardGroup.rotation.y += 0.0016 + p * 0.0008;
+    shardGroup.rotation.x = Math.sin(p * Math.PI * 2) * 0.35;
 
     core.position.y = Math.sin(p * Math.PI * 2) * 0.4;
     core.position.x = Math.cos(p * Math.PI * 1.5) * 0.35;
@@ -170,6 +186,37 @@ const initThreeScene = () => {
   };
   window.addEventListener("resize", onResize);
 
+  const sectionConfigs = [
+    { id: "hero", z: 6.6, y: 0.2, x: 0 },
+    { id: "features", z: 5.8, y: 0.45, x: -0.1 },
+    { id: "chapter-2", z: 5.4, y: -0.2, x: 0.2 },
+    { id: "chapter-3", z: 5.1, y: 0.75, x: -0.2 },
+    { id: "chapter-4", z: 4.8, y: 0.15, x: 0.25 },
+    { id: "chapter-5", z: 4.6, y: -0.35, x: -0.15 },
+    { id: "chapter-6", z: 4.3, y: 0.55, x: 0.18 },
+    { id: "chapter-7", z: 4.2, y: -0.18, x: -0.22 },
+    { id: "chapter-8", z: 4.0, y: 0.48, x: 0.16 },
+    { id: "chapter-9", z: 3.9, y: -0.22, x: -0.12 },
+    { id: "chapter-10", z: 3.7, y: 0.32, x: 0.22 },
+    { id: "chapter-11", z: 3.5, y: 0.15, x: -0.18 },
+    { id: "contact", z: 3.3, y: 0.05, x: 0 }
+  ];
+  sectionConfigs.forEach((cfg, idx) => {
+    ScrollTrigger.create({
+      trigger: `#${cfg.id}`,
+      start: "top 60%",
+      onEnter: () => {
+        gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.85, ease: "power2.out" });
+        gsap.to(core.rotation, { y: core.rotation.y + 0.85, duration: 0.85, ease: "power2.out" });
+        gsap.to(document.documentElement, {
+          "--theme-hue": `${(idx * 19) % 180}deg`,
+          duration: 0.7,
+          ease: "power2.out"
+        });
+      }
+    });
+  });
+
   return () => {
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", onResize);
@@ -186,6 +233,14 @@ gsap.from(".hero .stagger", {
   duration: 0.8,
   stagger: 0.12,
   ease: "power2.out"
+});
+
+ScrollTrigger.create({
+  trigger: "#hero",
+  start: "top top",
+  end: "+=80%",
+  pin: true,
+  pinSpacing: true
 });
 
 gsap.utils.toArray(".deck-section").forEach((section) => {

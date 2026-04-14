@@ -6,6 +6,7 @@
   --muted: #a9b8d8;
   --accent: #64d5ff;
   --accent2: #8f79ff;
+  --theme-hue: 0deg;
 }
 
 * { box-sizing: border-box; }
@@ -28,6 +29,8 @@ body { overflow-x: hidden; }
     radial-gradient(1000px 500px at 100% 10%, #6d4bff30, transparent 65%),
     var(--bg);
   z-index: -2;
+  transition: filter 0.7s ease;
+  filter: hue-rotate(var(--theme-hue));
 }
 
 .mouse-glow {
@@ -35,6 +38,31 @@ body { overflow-x: hidden; }
   background: radial-gradient(circle, #6dd9ff22 0%, transparent 70%);
   transform: translate(-50%, -50%);
   z-index: -1;
+}
+
+.vignette-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 40%, #00000040 78%, #00000088 100%),
+    linear-gradient(180deg, #00000033 0%, transparent 28%, transparent 72%, #00000044 100%);
+}
+
+.scene-label {
+  position: fixed;
+  left: 16px;
+  top: 14px;
+  z-index: 101;
+  border: 1px solid #375886;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: #0d1730cc;
+  color: #bcd8ff;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #17243f; z-index: 100; }
@@ -56,6 +84,7 @@ body { overflow-x: hidden; }
   background: linear-gradient(155deg, #0e1730cb, #0a1224cc);
   backdrop-filter: blur(7px);
   box-shadow: 0 20px 55px #0000005a;
+  transform-style: preserve-3d;
 }
 
 .hero { min-height: 86vh; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
@@ -163,6 +192,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
     padding: 6px; border: 1px solid #2d446f; border-radius: 999px; background: #0b1326d8;
   }
   .page { width: 95%; }
+  .scene-label { left: 10px; top: 8px; font-size: 0.68rem; padding: 5px 9px; }
   .deck-section { margin-top: 28px; padding: 20px; border-radius: 17px; }
   .hero { min-height: auto; }
   .hero-metrics, .chip-grid, .stats-row, .stats-grid, .chapter-stat-grid, .market-bars, .layer-grid, .funnel, .highlight-grid,
