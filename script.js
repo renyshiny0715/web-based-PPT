@@ -21,6 +21,11 @@ const progressBar = document.getElementById("scroll-progress-bar");
 const mouseGlow = document.getElementById("mouse-glow");
 const threeCanvas = document.getElementById("three-canvas");
 const sceneLabel = document.getElementById("scene-label");
+const isMobile = window.matchMedia("(max-width: 980px)").matches || window.matchMedia("(pointer: coarse)").matches;
+
+if (isMobile) {
+  document.body.classList.add("is-mobile");
+}
 
 navItems.forEach((id, idx) => {
   const btn = document.createElement("button");
@@ -68,6 +73,13 @@ window.addEventListener("pointermove", (e) => {
   mouseGlow.style.top = `${e.clientY}px`;
 }, { passive: true });
 
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches?.[0];
+  if (!touch) return;
+  mouseGlow.style.left = `${touch.clientX}px`;
+  mouseGlow.style.top = `${touch.clientY}px`;
+}, { passive: true });
+
 const initThreeScene = () => {
   if (!window.THREE || !threeCanvas) return;
 
@@ -79,10 +91,10 @@ const initThreeScene = () => {
     antialias: true,
     alpha: true
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.2 : 1.6));
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 80);
+  const camera = new THREE.PerspectiveCamera(isMobile ? 52 : 45, window.innerWidth / window.innerHeight, 0.1, 80);
   camera.position.set(0, 0.2, 6.6);
 
   const ambient = new THREE.AmbientLight("#9cc8ff", 0.7);
@@ -156,6 +168,13 @@ const initThreeScene = () => {
     mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
   };
   window.addEventListener("pointermove", onPointerMove, { passive: true });
+  const onTouchMove = (event) => {
+    const touch = event.touches?.[0];
+    if (!touch) return;
+    mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = (touch.clientY / window.innerHeight) * 2 - 1;
+  };
+  window.addEventListener("touchmove", onTouchMove, { passive: true });
 
   let raf = 0;
   const render = () => {
@@ -169,9 +188,9 @@ const initThreeScene = () => {
 
     core.position.y = Math.sin(p * Math.PI * 2) * 0.4;
     core.position.x = Math.cos(p * Math.PI * 1.5) * 0.35;
-    camera.position.z = 6.6 - p * 2.1;
-    camera.position.y = 0.2 + p * 0.8;
-    camera.position.x += (mouse.x * 0.45 - camera.position.x) * 0.03;
+    camera.position.z = 6.6 - p * (isMobile ? 2.45 : 2.1);
+    camera.position.y = 0.2 + p * (isMobile ? 1.05 : 0.8);
+    camera.position.x += (mouse.x * (isMobile ? 0.34 : 0.45) - camera.position.x) * 0.03;
     camera.lookAt(core.position);
 
     renderer.render(scene, camera);
@@ -201,18 +220,38 @@ const initThreeScene = () => {
     { id: "chapter-11", z: 3.5, y: 0.15, x: -0.18 },
     { id: "contact", z: 3.3, y: 0.05, x: 0 }
   ];
-  sectionConfigs.forEach((cfg, idx) => {
+  const mobileSectionConfigs = [
+    { id: "hero", z: 7.2, y: 0.28, x: 0 },
+    { id: "features", z: 6.35, y: 0.72, x: -0.08 },
+    { id: "chapter-2", z: 6.1, y: -0.3, x: 0.14 },
+    { id: "chapter-3", z: 5.85, y: 0.95, x: -0.12 },
+    { id: "chapter-4", z: 5.6, y: 0.26, x: 0.15 },
+    { id: "chapter-5", z: 5.35, y: -0.42, x: -0.1 },
+    { id: "chapter-6", z: 5.1, y: 0.74, x: 0.14 },
+    { id: "chapter-7", z: 4.95, y: -0.3, x: -0.14 },
+    { id: "chapter-8", z: 4.8, y: 0.63, x: 0.12 },
+    { id: "chapter-9", z: 4.65, y: -0.26, x: -0.1 },
+    { id: "chapter-10", z: 4.45, y: 0.45, x: 0.12 },
+    { id: "chapter-11", z: 4.2, y: 0.2, x: -0.12 },
+    { id: "contact", z: 4.05, y: 0.08, x: 0 }
+  ];
+  const activeSectionConfigs = isMobile ? mobileSectionConfigs : sectionConfigs;
+  activeSectionConfigs.forEach((cfg, idx) => {
     ScrollTrigger.create({
       trigger: `#${cfg.id}`,
       start: "top 60%",
       onEnter: () => {
+        const spinBoost = isMobile ? 1.02 : 0.85;
         gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.85, ease: "power2.out" });
-        gsap.to(core.rotation, { y: core.rotation.y + 0.85, duration: 0.85, ease: "power2.out" });
+        gsap.to(core.rotation, { y: core.rotation.y + spinBoost, duration: 0.85, ease: "power2.out" });
         gsap.to(document.documentElement, {
           "--theme-hue": `${(idx * 19) % 180}deg`,
           duration: 0.7,
           ease: "power2.out"
         });
+      },
+      onEnterBack: () => {
+        gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.7, ease: "power2.out" });
       }
     });
   });
@@ -221,6 +260,7 @@ const initThreeScene = () => {
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", onResize);
     window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("touchmove", onTouchMove);
     renderer.dispose();
     particleGeometry.dispose();
   };
@@ -238,7 +278,7 @@ gsap.from(".hero .stagger", {
 ScrollTrigger.create({
   trigger: "#hero",
   start: "top top",
-  end: "+=80%",
+  end: isMobile ? "+=65%" : "+=80%",
   pin: true,
   pinSpacing: true
 });
@@ -328,6 +368,67 @@ gsap.utils.toArray(".bar-fill-vertical").forEach((bar) => {
     }
   });
 });
+
+const curveLine = document.querySelector(".curve-line");
+const curveArea = document.querySelector(".curve-area");
+const curveDots = gsap.utils.toArray(".curve-dot");
+if (curveLine) {
+  const lineLength = curveLine.getTotalLength();
+  gsap.set(curveLine, {
+    strokeDasharray: lineLength,
+    strokeDashoffset: lineLength
+  });
+  gsap.set(curveDots, { scale: 0, opacity: 0 });
+  gsap.fromTo(curveArea, { opacity: 0 }, {
+    opacity: 1,
+    duration: 0.9,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#chapter-4",
+      start: "top 78%",
+      once: true
+    }
+  });
+  gsap.to(curveLine, {
+    strokeDashoffset: 0,
+    duration: 1.3,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#chapter-4",
+      start: "top 78%",
+      once: true
+    }
+  });
+  gsap.to(curveDots, {
+    scale: 1,
+    opacity: 1,
+    duration: 0.45,
+    stagger: 0.18,
+    ease: "back.out(2.2)",
+    scrollTrigger: {
+      trigger: "#chapter-4",
+      start: "top 74%",
+      once: true
+    }
+  });
+}
+
+if (isMobile) {
+  gsap.utils.toArray(".deck-section").forEach((section) => {
+    gsap.to(section, {
+      rotateX: -4,
+      y: -14,
+      transformPerspective: 900,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  });
+}
 
 gsap.utils.toArray(".count").forEach((el) => {
   const value = Number(el.dataset.value || "");
