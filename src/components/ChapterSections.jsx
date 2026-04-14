@@ -134,7 +134,6 @@ const ChapterSections = () => (
     {chapterData.map((chapter) => (
       <section className="section chapter-section reveal-item" id={chapter.id} key={chapter.id}>
         <div className="section-head">
-          <p>Pitch Chapter</p>
           <h2>{chapter.title}</h2>
         </div>
         <div className="chapter-layout">

@@ -10,7 +10,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <header className="section hero" id="hero">
+    <header className={`section hero${allow3D ? "" : " hero-no-scene"}`} id="hero">
       <div className="hero-copy">
         <p className="eyebrow">SUPER INDIVIDUALS GLOBAL AI Operting system</p>
         <h1>超级个体出海AI操作系统</h1>
@@ -37,15 +37,17 @@ const HeroSection = () => {
           Investor Narrative
         </a>
       </div>
-      <div className="hero-scene-shell">
-        <img
-          className="hero-scene-poster"
-          src="https://images.unsplash.com/photo-1557264337-e8a93017fe92?auto=format&fit=crop&w=1100&q=80"
-          alt="global digital network"
-          loading="eager"
-        />
-        {allow3D ? <HeroScene /> : <div className="hero-scene-fallback-layer" />}
-      </div>
+      {allow3D ? (
+        <div className="hero-scene-shell">
+          <img
+            className="hero-scene-poster"
+            src="https://images.unsplash.com/photo-1557264337-e8a93017fe92?auto=format&fit=crop&w=1100&q=80"
+            alt="global digital network"
+            loading="eager"
+          />
+          <HeroScene />
+        </div>
+      ) : null}
     </header>
   );
 };

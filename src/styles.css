@@ -85,6 +85,10 @@ body {
   grid-template-columns: 1fr minmax(320px, 460px);
 }
 
+.hero.hero-no-scene {
+  grid-template-columns: 1fr;
+}
+
 .hero-copy h1 {
   margin: 6px 0 12px;
   font-size: clamp(2.2rem, 6vw, 4.2rem);
@@ -157,15 +161,6 @@ body {
 .hero-scene-canvas {
   position: absolute;
   inset: 0;
-}
-
-.hero-scene-fallback-layer {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, #68dbff44 0%, transparent 35%),
-    radial-gradient(circle at 70% 60%, #7d6dff66 0%, transparent 45%),
-    #0b1222;
 }
 
 .section-head p {
