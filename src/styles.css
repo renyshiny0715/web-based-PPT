@@ -263,6 +263,17 @@ body {
   border-radius: 10px;
   padding: 10px;
   background: #121d36;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-stat::before {
+  content: "";
+  position: absolute;
+  inset: auto -30% -55% -30%;
+  height: 120px;
+  background: radial-gradient(circle, #64d5ff1f 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .chapter-stat strong {
@@ -326,6 +337,39 @@ body {
   grid-template-columns: minmax(260px, 36%) 1fr;
   gap: 16px;
   align-items: start;
+}
+
+.chapter-bar-chart {
+  margin-bottom: 12px;
+  border: 1px solid #365078;
+  border-radius: 12px;
+  padding: 10px;
+  background: #101a30;
+  display: grid;
+  gap: 7px;
+}
+
+.chapter-bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 42px;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.chapter-bar-track {
+  background: #1c2a46;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.chapter-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #64d5ff, #8f79ff);
 }
 
 .chapter-media-stack {
@@ -762,6 +806,11 @@ body {
 
   .chapter-meta h2 {
     font-size: clamp(1.2rem, 6vw, 1.5rem);
+  }
+
+  .chapter-bar-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .section {

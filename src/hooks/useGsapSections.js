@@ -19,6 +19,7 @@ export const useGsapSections = () => {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const tiltCleanups = [];
+      const countups = [];
 
       gsap.from(".hero-copy > *", {
         opacity: 0,
@@ -94,6 +95,62 @@ export const useGsapSections = () => {
         });
       });
 
+      gsap.utils.toArray(".chapter-bar-fill").forEach((fill) => {
+        const target = Number(fill.dataset.fill || "0");
+        gsap.fromTo(
+          fill,
+          { width: "0%" },
+          {
+            width: `${target}%`,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: fill.closest(".chapter-bar-chart"),
+              start: "top 88%",
+              once: true
+            }
+          }
+        );
+      });
+
+      gsap.utils.toArray(".chapter-meta h2, .chapter-summary, .bullet-list li").forEach((item, idx) => {
+        gsap.from(item, {
+          opacity: 0,
+          y: 22,
+          duration: 0.6,
+          delay: idx * 0.01,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: item.closest(".chapter-section"),
+            start: "top 82%"
+          }
+        });
+      });
+
+      gsap.utils.toArray(".stat-number").forEach((el) => {
+        const raw = Number(el.dataset.count || "");
+        if (!Number.isFinite(raw)) return;
+        const suffix = el.dataset.suffix || "";
+        const decimals = Number(el.dataset.decimals || "0");
+        const obj = { val: 0 };
+        const tween = gsap.to(obj, {
+          val: raw,
+          duration: 1.15,
+          ease: "power2.out",
+          paused: true,
+          onUpdate: () => {
+            el.textContent = `${obj.val.toFixed(decimals)}${suffix}`;
+          }
+        });
+        countups.push(tween);
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 88%",
+          once: true,
+          onEnter: () => tween.play(0)
+        });
+      });
+
       if (window.innerWidth > 980) {
         gsap.utils
           .toArray(".feature-card, .highlight-grid div, .kpi-grid div, .chapter-stat")
@@ -123,6 +180,7 @@ export const useGsapSections = () => {
       }
 
       return () => {
+        countups.forEach((tw) => tw.kill());
         tiltCleanups.forEach((fn) => fn());
       };
     });
