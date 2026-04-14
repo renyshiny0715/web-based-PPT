@@ -369,50 +369,6 @@ gsap.utils.toArray(".bar-fill-vertical").forEach((bar) => {
   });
 });
 
-const curveLine = document.querySelector(".curve-line");
-const curveArea = document.querySelector(".curve-area");
-const curveDots = gsap.utils.toArray(".curve-dot");
-if (curveLine) {
-  const lineLength = curveLine.getTotalLength();
-  gsap.set(curveLine, {
-    strokeDasharray: lineLength,
-    strokeDashoffset: lineLength
-  });
-  gsap.set(curveDots, { scale: 0, opacity: 0 });
-  gsap.fromTo(curveArea, { opacity: 0 }, {
-    opacity: 1,
-    duration: 0.9,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#chapter-4",
-      start: "top 78%",
-      once: true
-    }
-  });
-  gsap.to(curveLine, {
-    strokeDashoffset: 0,
-    duration: 1.3,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#chapter-4",
-      start: "top 78%",
-      once: true
-    }
-  });
-  gsap.to(curveDots, {
-    scale: 1,
-    opacity: 1,
-    duration: 0.45,
-    stagger: 0.18,
-    ease: "back.out(2.2)",
-    scrollTrigger: {
-      trigger: "#chapter-4",
-      start: "top 74%",
-      once: true
-    }
-  });
-}
-
 if (isMobile) {
   gsap.utils.toArray(".deck-section").forEach((section) => {
     gsap.to(section, {

@@ -137,41 +137,46 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   padding: 10px;
   margin-bottom: 12px;
 }
+.curve-title {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  color: #c7e8ff;
+}
 .curve-svg { width: 100%; height: auto; display: block; }
 .curve-grid {
   fill: none;
-  stroke: #314c76;
+  stroke: #355988;
   stroke-width: 1;
   stroke-dasharray: 3 6;
 }
 .curve-axis-label {
-  fill: #7fa5d2;
+  fill: #b8dbff;
   font-size: 10px;
   letter-spacing: 0.02em;
 }
 .curve-point-label {
-  fill: #cce9ff;
+  fill: #eef8ff;
   font-size: 9px;
 }
 .curve-area {
-  fill: rgba(100, 213, 255, 0.2);
-  opacity: 0;
+  fill: rgba(100, 213, 255, 0.28);
+  opacity: 1;
 }
 .curve-line {
   fill: none;
-  stroke: #7ee3ff;
+  stroke: #7ce8ff;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.45));
+  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.5));
 }
 .curve-dot {
-  fill: #e9f8ff;
-  stroke: #62d7ff;
+  fill: #ffffff;
+  stroke: #58d7ff;
   stroke-width: 2;
   transform-box: fill-box;
   transform-origin: center;
-  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.55));
+  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.7));
 }
 .curve-unit {
   margin: 8px 2px 0;
@@ -205,16 +210,29 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .detail-toggle summary {
   cursor: pointer;
   color: #9ed8ff;
-  font-weight: 700;
+  font-weight: 600;
   list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .detail-toggle summary::-webkit-details-marker { display: none; }
-.detail-toggle summary::after {
-  content: " +";
-  color: #7fd7ff;
+.info-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #67d8ff;
+  color: #06243a;
+  background: linear-gradient(135deg, #97ecff, #67d8ff);
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1;
 }
-.detail-toggle[open] summary::after {
-  content: " -";
+.info-text {
+  color: #b6d7ff;
+  font-size: 0.86rem;
 }
 .detail-toggle p {
   margin: 8px 0 0;
@@ -287,7 +305,8 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   .media, .media.tall, .media.wide { height: 190px; }
   .curve-labels { grid-template-columns: 1fr; }
   .curve-axis-label { font-size: 11px; }
-  .curve-point-label { font-size: 10px; }
+  .curve-point-label { font-size: 10px; fill: #f1f9ff; }
+  .curve-title { font-size: 0.9rem; }
 }
 
 @media (max-width: 760px) {
