@@ -144,23 +144,35 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   stroke-width: 1;
   stroke-dasharray: 3 6;
 }
+.curve-axis-label {
+  fill: #7fa5d2;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
 .curve-area {
-  fill: url(#curveArea);
+  fill: rgba(100, 213, 255, 0.2);
   opacity: 0;
 }
 .curve-line {
   fill: none;
-  stroke: url(#curveLine);
+  stroke: #7ee3ff;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.45));
 }
 .curve-dot {
-  fill: #c7ecff;
-  stroke: #8f79ff;
+  fill: #e9f8ff;
+  stroke: #62d7ff;
   stroke-width: 2;
   transform-box: fill-box;
   transform-origin: center;
+  filter: drop-shadow(0 0 8px rgba(100, 213, 255, 0.55));
+}
+.curve-unit {
+  margin: 8px 2px 0;
+  color: #8fb4df;
+  font-size: 0.78rem;
 }
 .curve-labels {
   display: grid;
