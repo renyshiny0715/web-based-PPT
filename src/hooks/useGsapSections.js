@@ -113,8 +113,12 @@ export const useGsapSections = () => {
         );
       });
 
-      gsap.utils.toArray(".chapter-meta h2, .chapter-summary, .bullet-list li").forEach((item, idx) => {
-        gsap.from(item, {
+      gsap
+        .utils.toArray(
+          ".chapter-meta h2, .chapter-summary, .bullet-list li, .chip-list span, .timeline-copy p, .quote-card, .mini-list article"
+        )
+        .forEach((item, idx) => {
+          gsap.from(item, {
           opacity: 0,
           y: 22,
           duration: 0.6,
@@ -139,7 +143,11 @@ export const useGsapSections = () => {
           ease: "power2.out",
           paused: true,
           onUpdate: () => {
-            el.textContent = `${obj.val.toFixed(decimals)}${suffix}`;
+            const numericText =
+              decimals > 0
+                ? Number(obj.val).toFixed(decimals)
+                : Math.round(obj.val).toLocaleString("zh-CN");
+            el.textContent = `${numericText}${suffix}`;
           }
         });
         countups.push(tween);

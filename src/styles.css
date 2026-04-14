@@ -339,6 +339,94 @@ body {
   align-items: start;
 }
 
+.chapter-layout-a {
+  grid-template-columns: minmax(300px, 38%) 1fr;
+}
+
+.chapter-layout-b {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 42%);
+  gap: 12px;
+}
+
+.chapter-layout-c {
+  display: grid;
+  grid-template-columns: minmax(280px, 36%) 1fr;
+  gap: 12px;
+}
+
+.chapter-layout-d {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.chapter-layout-e {
+  display: grid;
+  grid-template-columns: minmax(280px, 36%) 1fr;
+  gap: 12px;
+}
+
+.chip-list {
+  display: grid;
+  gap: 8px;
+}
+
+.chip-list span {
+  border: 1px solid #385884;
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: #121d36;
+  color: #cae6ff;
+  font-size: 0.9rem;
+}
+
+.timeline-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.timeline-copy p {
+  margin: 0;
+  border: 1px solid #365078;
+  border-radius: 10px;
+  padding: 10px;
+  background: #101a30;
+  color: var(--muted);
+}
+
+.quote-card {
+  border: 1px solid #35527a;
+  border-radius: 12px;
+  padding: 12px;
+  background: #101b31;
+  color: #c8ddfb;
+}
+
+.mini-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mini-list article {
+  border: 1px solid #385884;
+  border-radius: 11px;
+  background: #111a31;
+  padding: 10px;
+}
+
+.mini-list h4 {
+  margin: 0 0 4px;
+  color: #9fd9ff;
+  font-size: 0.84rem;
+}
+
+.mini-list p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .chapter-bar-chart {
   margin-bottom: 12px;
   border: 1px solid #365078;
@@ -383,6 +471,10 @@ body {
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid #3e5886;
+}
+
+.chapter-layout-d .chapter-image {
+  height: 180px;
 }
 
 .bullet-list {
@@ -759,6 +851,11 @@ body {
 @media (max-width: 980px) {
   .hero,
   .chapter-layout,
+  .chapter-layout-a,
+  .chapter-layout-b,
+  .chapter-layout-c,
+  .chapter-layout-d,
+  .chapter-layout-e,
   .chapter-stat-grid,
   .kpi-grid,
   .pain-grid,
@@ -793,6 +890,10 @@ body {
   }
 
   .chapter-image {
+    height: 190px;
+  }
+
+  .chapter-layout-d .chapter-image {
     height: 190px;
   }
 

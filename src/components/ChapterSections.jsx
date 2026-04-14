@@ -3,6 +3,7 @@ const chapterData = [
     id: "features",
     title: "一、核心定位",
     icon: "🧭",
+    layout: "a",
     summary: "全球首个全链路 AI 跨境出海操作系统，双模式覆盖从新手到企业卖家。",
     stats: [
       { value: "5", label: "核心模块", count: 5, suffix: "" },
@@ -25,6 +26,7 @@ const chapterData = [
     id: "chapter-2",
     title: "二、核心痛点（实战与行业数据）",
     icon: "⚠️",
+    layout: "b",
     summary: "平台垄断、门槛高、工具碎片化、品牌溢价不足形成结构性机会。",
     stats: [
       { value: "20%-30%", label: "平台佣金", count: 30, suffix: "%" },
@@ -47,6 +49,7 @@ const chapterData = [
     id: "chapter-3",
     title: "三、愿景与使命",
     icon: "🎯",
+    layout: "c",
     summary: "用 AI 重构全球商业，让普通人也能做全球生意。",
     stats: [
       { value: "0门槛", label: "系统体验", count: 0, suffix: "门槛" },
@@ -69,6 +72,7 @@ const chapterData = [
     id: "chapter-4",
     title: "四、市场机遇",
     icon: "📈",
+    layout: "d",
     summary: "跨境电商高增长 + 超级个体崛起，供给端与需求端同步爆发。",
     stats: [
       { value: "4.8T", label: "2025 全球市场", count: 4.8, suffix: "T", decimals: 1 },
@@ -91,6 +95,7 @@ const chapterData = [
     id: "chapter-5",
     title: "五、为什么是现在",
     icon: "⏱️",
+    layout: "e",
     summary: "AI成熟、产业政策、创业趋势、消费升级四重共振。",
     stats: [
       { value: "4", label: "关键驱动因素", count: 4, suffix: "" },
@@ -113,6 +118,7 @@ const chapterData = [
     id: "chapter-6",
     title: "六、核心产品与双模式",
     icon: "⚙️",
+    layout: "a",
     summary: "系统内核 + 模块体系 + 双模式设计，形成闭环经营能力。",
     stats: [
       { value: "3", label: "内核组件", count: 3, suffix: "" },
@@ -135,6 +141,7 @@ const chapterData = [
     id: "chapter-7",
     title: "七、商业模式",
     icon: "💳",
+    layout: "b",
     summary: "订阅 + Credits + 质检收费，形成多元稳定收入结构。",
     stats: [
       { value: "3", label: "收入层级", count: 3, suffix: "" },
@@ -157,6 +164,7 @@ const chapterData = [
     id: "chapter-8",
     title: "八、市场推广",
     icon: "🚀",
+    layout: "c",
     summary: "国内外双引擎 + 裂变机制，构建低成本高转化增长飞轮。",
     stats: [
       { value: "300万+", label: "曝光目标", count: 300, suffix: "万+" },
@@ -179,6 +187,7 @@ const chapterData = [
     id: "chapter-9",
     title: "九、核心竞争优势",
     icon: "🛡️",
+    layout: "d",
     summary: "模式、效率、体验、认证、闭环五重壁垒构建长期优势。",
     stats: [
       { value: "60%+", label: "效率提升", count: 60, suffix: "%+" },
@@ -201,6 +210,7 @@ const chapterData = [
     id: "chapter-10",
     title: "十、成本与盈利规划",
     icon: "💰",
+    layout: "e",
     summary: "2年投入 1080 万，目标营收 6000 万，净利润 1800 万。",
     stats: [
       { value: "1080万", label: "2年总投入", count: 1080, suffix: "万" },
@@ -223,6 +233,7 @@ const chapterData = [
     id: "chapter-11",
     title: "十一、投资亮点",
     icon: "✨",
+    layout: "a",
     summary: "趋势红利 + 模式壁垒 + 盈利确定性，共同构成操作系统级机会。",
     stats: [
       { value: "3大", label: "趋势叠加", count: 3, suffix: "" },
@@ -242,6 +253,72 @@ const chapterData = [
     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1300&q=80"
   }
 ];
+
+const renderSectionBody = (chapter) => {
+  if (chapter.layout === "a") {
+    return (
+      <div className="chapter-layout chapter-layout-a">
+        <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
+        <ul className="bullet-list">
+          {chapter.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+  if (chapter.layout === "b") {
+    return (
+      <div className="chapter-layout-b">
+        <div className="chip-list">
+          {chapter.points.map((point) => (
+            <span key={point}>{point}</span>
+          ))}
+        </div>
+        <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
+      </div>
+    );
+  }
+
+  if (chapter.layout === "c") {
+    return (
+      <div className="chapter-layout-c">
+        <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
+        <div className="timeline-copy">
+          {chapter.points.map((point, idx) => (
+            <p key={point}><b>{idx + 1}.</b> {point}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (chapter.layout === "d") {
+    return (
+      <div className="chapter-layout-d">
+        <div className="quote-card">{chapter.points[0]}</div>
+        <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
+        <div className="quote-card">{chapter.points[1]}</div>
+        <div className="quote-card">{chapter.points[2]}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="chapter-layout-e">
+      <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
+      <div className="mini-list">
+        {chapter.points.map((point) => (
+          <article key={point}>
+            <h4>Key Insight</h4>
+            <p>{point}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ChapterSections = () => (
   <>
@@ -278,16 +355,7 @@ const ChapterSections = () => (
             </div>
           ))}
         </div>
-        <div className="chapter-layout">
-          <div className="chapter-media-stack">
-            <img className="chapter-image" src={chapter.image} alt={chapter.title} loading="lazy" />
-          </div>
-          <ul className="bullet-list">
-            {chapter.points.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-        </div>
+        {renderSectionBody(chapter)}
       </section>
     ))}
 
