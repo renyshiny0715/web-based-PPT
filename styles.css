@@ -200,44 +200,20 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .curve-label span { color: var(--muted); font-size: 0.78rem; }
 .curve-label b { color: #a9ddff; font-size: 1rem; }
 
-.detail-toggle {
+.inline-detail {
   margin-top: 12px;
   border: 1px solid #36517f;
   border-radius: 12px;
   background: #111c34;
   padding: 10px 12px;
 }
-.detail-toggle summary {
-  cursor: pointer;
-  color: #9ed8ff;
-  font-weight: 600;
-  list-style: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.detail-toggle summary::-webkit-details-marker { display: none; }
-.info-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid #67d8ff;
-  color: #06243a;
-  background: linear-gradient(135deg, #97ecff, #67d8ff);
-  font-size: 0.74rem;
-  font-weight: 800;
-  line-height: 1;
-}
-.info-text {
-  color: #b6d7ff;
-  font-size: 0.86rem;
-}
-.detail-toggle p {
+.inline-detail p {
   margin: 8px 0 0;
   color: var(--muted);
   line-height: 1.55;
+}
+.inline-detail p:first-child {
+  margin-top: 0;
 }
 
 .numbered-list { display: grid; gap: 8px; }

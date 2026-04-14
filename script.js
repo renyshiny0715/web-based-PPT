@@ -278,8 +278,8 @@ gsap.from(".hero .stagger", {
 ScrollTrigger.create({
   trigger: "#hero",
   start: "top top",
-  end: isMobile ? "+=45%" : "+=80%",
-  pin: true,
+  end: isMobile ? "+=18%" : "+=45%",
+  pin: !isMobile,
   pinSpacing: !isMobile
 });
 
@@ -385,12 +385,6 @@ if (isMobile) {
     });
   });
 }
-
-document.querySelectorAll(".detail-toggle").forEach((el) => {
-  el.addEventListener("toggle", () => {
-    ScrollTrigger.refresh();
-  });
-});
 
 gsap.utils.toArray(".count").forEach((el) => {
   const value = Number(el.dataset.value || "");
