@@ -275,12 +275,16 @@ gsap.from(".hero .stagger", {
   ease: "power2.out"
 });
 
-ScrollTrigger.create({
-  trigger: "#hero",
-  start: "top top",
-  end: isMobile ? "+=18%" : "+=45%",
-  pin: !isMobile,
-  pinSpacing: !isMobile
+gsap.to("#hero", {
+  y: isMobile ? -16 : -24,
+  opacity: isMobile ? 0.985 : 0.97,
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#hero",
+    start: "top top",
+    end: isMobile ? "bottom 68%" : "bottom 62%",
+    scrub: true
+  }
 });
 
 gsap.utils.toArray(".deck-section").forEach((section) => {

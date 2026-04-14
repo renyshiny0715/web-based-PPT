@@ -74,7 +74,7 @@ body { overflow-x: hidden; }
 }
 .side-nav button.active { background: var(--accent); color: #04101f; border-color: var(--accent); font-weight: 700; }
 
-.page { width: min(1180px, 94%); margin: 0 auto; padding-bottom: 80px; }
+.page { width: min(1180px, 94%); margin: 0 auto; padding-bottom: 132px; }
 
 .deck-section {
   margin-top: 52px;
@@ -87,7 +87,15 @@ body { overflow-x: hidden; }
   transform-style: preserve-3d;
 }
 
-.hero { min-height: 86vh; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.hero {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 42px;
+  padding-bottom: 22px;
+}
 .eyebrow { text-transform: uppercase; letter-spacing: .09em; color: var(--accent); font-size: .8rem; margin: 0; }
 h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .hero-sub { margin: 0; color: #9cd8ff; font-weight: 700; font-size: 1.1rem; }
@@ -300,7 +308,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
     padding: 16px;
     margin-top: 16px;
   }
-  .hero { min-height: 72vh; }
+  .hero { min-height: 72vh; padding-top: 34px; padding-bottom: 26px; }
   .curve-svg { min-height: 170px; }
   .curve-unit { font-size: 0.75rem; }
   #three-canvas { opacity: 0.95; }
