@@ -145,6 +145,36 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .stats-row, .stats-grid, .chapter-stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
 .stats-row { margin: 12px 0; }
 
+.founder-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  margin: 8px 0 12px;
+}
+.founder-stat {
+  border: 1px solid #3c5f92;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #142644, #111d35);
+  padding: 11px 10px;
+  transition: transform 0.26s ease, border-color 0.26s ease, box-shadow 0.26s ease;
+}
+.founder-stat strong {
+  display: block;
+  color: #b8eeff;
+  font-size: 1.3rem;
+  line-height: 1.05;
+  margin-bottom: 4px;
+}
+.founder-stat span {
+  color: #a6c0e4;
+  font-size: 0.76rem;
+}
+.founder-stat:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #6cdeff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
 .market-curve {
   border: 1px solid #35527d;
   border-radius: 14px;
@@ -314,6 +344,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   .hero { min-height: auto; }
   .hero-metrics, .chip-grid, .stats-row, .stats-grid, .chapter-stat-grid, .layer-grid, .funnel, .highlight-grid,
   .content-grid, .chapter-layout-a, .chapter-layout-b, .chapter-layout-c, .chapter-layout-d, .chapter-layout-e { grid-template-columns: 1fr; }
+  .founder-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bar-row, .chapter-bar-row { grid-template-columns: 1fr; gap: 4px; }
   .media, .media.tall, .media.wide { height: 190px; }
   .media.founder-photo { max-height: none; height: auto; }
@@ -343,6 +374,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   .curve-unit { font-size: 0.75rem; }
   .funnel-step { width: 100%; padding: 8px 10px; }
   .funnel-step b { font-size: 1.02rem; }
+  .founder-stats { grid-template-columns: 1fr; }
   #three-canvas { opacity: 0.95; }
   .mouse-glow { width: 180px; height: 180px; }
   .vignette-layer {

@@ -321,6 +321,20 @@ gsap.utils.toArray(".deck-section").forEach((section) => {
   }
 });
 
+gsap.from("#chapter-founder .founder-stat", {
+  opacity: 0,
+  y: 24,
+  scale: 0.95,
+  duration: 0.62,
+  stagger: 0.1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "#chapter-founder",
+    start: "top 78%",
+    once: true
+  }
+});
+
 gsap.from(".funnel-step", {
   opacity: 0,
   x: -18,
@@ -437,7 +451,7 @@ gsap.utils.toArray(".count").forEach((el) => {
   });
 });
 
-gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, .chapter-stat, .funnel-step").forEach((card) => {
+gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, .chapter-stat, .funnel-step, .founder-stat").forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width - 0.5;
