@@ -321,6 +321,19 @@ gsap.utils.toArray(".deck-section").forEach((section) => {
   }
 });
 
+gsap.from(".funnel-step", {
+  opacity: 0,
+  x: -18,
+  duration: 0.65,
+  stagger: 0.13,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "#chapter-8",
+    start: "top 78%",
+    once: true
+  }
+});
+
 gsap.utils.toArray(".parallax").forEach((img) => {
   gsap.to(img, {
     yPercent: 8,
@@ -411,9 +424,20 @@ gsap.utils.toArray(".count").forEach((el) => {
       el.textContent = `${Math.round(counter.value).toLocaleString("zh-CN")}${suffix}`;
     }
   });
+  gsap.fromTo(el, { scale: 0.8, opacity: 0.6 }, {
+    scale: 1,
+    opacity: 1,
+    duration: 0.55,
+    ease: "back.out(2.3)",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 88%",
+      once: true
+    }
+  });
 });
 
-gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, .chapter-stat").forEach((card) => {
+gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, .chapter-stat, .funnel-step").forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width - 0.5;
