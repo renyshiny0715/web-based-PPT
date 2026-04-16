@@ -348,6 +348,50 @@ gsap.from(".funnel-step", {
   }
 });
 
+const bizBar = document.querySelector(".biz-scroll-bar");
+if (bizBar) {
+  gsap.to(bizBar, {
+    scaleX: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#chapter-7",
+      start: "top 80%",
+      end: "bottom 25%",
+      scrub: true
+    }
+  });
+}
+
+gsap.utils.toArray("#chapter-7 .biz-block").forEach((block, idx) => {
+  gsap.fromTo(block, {
+    y: 26,
+    opacity: 0.55,
+    rotateX: -7
+  }, {
+    y: 0,
+    opacity: 1,
+    rotateX: 0,
+    duration: 0.95,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: block,
+      start: "top 86%",
+      once: true
+    }
+  });
+
+  gsap.to(block, {
+    y: -8 - idx * 1.2,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#chapter-7",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true
+    }
+  });
+});
+
 gsap.utils.toArray(".parallax").forEach((img) => {
   gsap.to(img, {
     yPercent: 8,
