@@ -276,6 +276,49 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .layer-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
 .layer-card strong { color: #9ddcff; display: inline-block; margin-bottom: 4px; }
 
+.biz-blocks { display: grid; gap: 10px; margin-bottom: 12px; }
+.biz-block {
+  border: 1px solid #36517f;
+  border-radius: 12px;
+  background: #111c34;
+  padding: 12px;
+}
+.biz-block h3 {
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+  color: #9edcff;
+}
+.biz-block p {
+  margin: 0 0 6px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.biz-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 6px;
+}
+.biz-list b { color: #c6e8ff; }
+.biz-path {
+  border: 1px dashed #46679d;
+  border-radius: 10px;
+  background: #0f1a31;
+  padding: 8px 10px;
+  color: #c8e3ff;
+  font-weight: 600;
+}
+.biz-highlight {
+  color: #9ed8ff !important;
+  font-weight: 700;
+}
+.biz-quote {
+  color: #d6f0ff !important;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
 .funnel { display: grid; gap: 8px; margin-bottom: 12px; justify-items: center; }
 .funnel-step {
   width: min(100%, 720px);
