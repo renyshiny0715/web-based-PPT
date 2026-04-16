@@ -85,6 +85,7 @@ body { overflow-x: hidden; }
   backdrop-filter: blur(7px);
   box-shadow: 0 20px 55px #0000005a;
   transform-style: preserve-3d;
+  overflow: clip;
 }
 
 .hero {
@@ -337,9 +338,27 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   font-weight: 700;
 }
 
-.funnel { display: grid; gap: 8px; margin-bottom: 12px; justify-items: center; }
+.funnel {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  justify-items: center;
+  position: relative;
+  padding: 6px 0 4px;
+}
+.funnel::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #64d5ff66, #8f79ff66);
+  pointer-events: none;
+}
 .funnel-step {
-  width: min(100%, 720px);
+  width: min(100%, 760px);
   border: 1px solid #36527d;
   background: linear-gradient(135deg, #132242, #111c34);
   clip-path: polygon(6% 0%, 94% 0%, 100% 50%, 94% 100%, 6% 100%, 0% 50%);
@@ -358,9 +377,9 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.42);
 }
 .funnel-step.step-1 { max-width: 96%; }
-.funnel-step.step-2 { max-width: 76%; }
-.funnel-step.step-3 { max-width: 58%; }
-.funnel-step.step-4 { max-width: 42%; }
+.funnel-step.step-2 { max-width: 82%; }
+.funnel-step.step-3 { max-width: 68%; }
+.funnel-step.step-4 { max-width: 54%; }
 .split-copy { display: grid; gap: 8px; margin-bottom: 12px; }
 
 .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
@@ -443,6 +462,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
   .curve-unit { font-size: 0.75rem; }
   .funnel-step { width: 100%; padding: 8px 10px; }
   .funnel-step b { font-size: 1.02rem; }
+  .funnel::before { display: none; }
   .founder-stats { grid-template-columns: 1fr; }
   #three-canvas { opacity: 0.95; }
   .mouse-glow { width: 180px; height: 180px; }

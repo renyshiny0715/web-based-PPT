@@ -392,9 +392,10 @@ gsap.utils.toArray("#chapter-7 .biz-block").forEach((block, idx) => {
   });
 });
 
+const parallaxStrength = isMobile ? 2.5 : 6;
 gsap.utils.toArray(".parallax").forEach((img) => {
   gsap.to(img, {
-    yPercent: 8,
+    yPercent: parallaxStrength,
     ease: "none",
     scrollTrigger: {
       trigger: img,
@@ -450,8 +451,8 @@ gsap.utils.toArray(".bar-fill-vertical").forEach((bar) => {
 if (isMobile) {
   gsap.utils.toArray(".deck-section").forEach((section) => {
     gsap.to(section, {
-      rotateX: -4,
-      y: -14,
+      rotateX: -1.2,
+      y: -4,
       transformPerspective: 900,
       ease: "none",
       scrollTrigger: {
