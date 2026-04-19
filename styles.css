@@ -171,6 +171,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .bar-fill { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 
 .chip-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
+.chip-grid .chip-card--span { grid-column: 1 / -1; }
 .chip-card, .timeline-card, .layer-card, .quote-card, .mini-list article { border: 1px solid #36517f; border-radius: 12px; background: #111c34; padding: 12px; }
 .chip-card h3 { margin: 0 0 6px; font-size: .98rem; }
 .chip-card p, .timeline-card p, .layer-card p, .split-copy p, .mini-list p { margin: 0; color: var(--muted); }
