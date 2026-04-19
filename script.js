@@ -2,6 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const NAV_V1 = [
   "hero-v1",
+  "v1-ch-pain",
   "v1-founder",
   "v1-ch1",
   "v1-ch-comp",
@@ -353,27 +354,29 @@ const initThreeScene = () => {
   ];
   const sectionConfigsV1 = [
     { id: "hero-v1", z: 6.6, y: 0.2, x: 0 },
-    { id: "v1-founder", z: 5.88, y: 0.58, x: -0.12 },
-    { id: "v1-ch1", z: 5.64, y: 0.4, x: -0.1 },
-    { id: "v1-ch-comp", z: 5.4, y: -0.12, x: 0.16 },
-    { id: "v1-ch2", z: 5.18, y: -0.18, x: 0.18 },
-    { id: "v1-ch3", z: 4.95, y: 0.48, x: -0.16 },
-    { id: "v1-ch4", z: 4.72, y: 0.14, x: 0.2 },
-    { id: "v1-ch5", z: 4.48, y: -0.24, x: -0.12 },
-    { id: "v1-ch6", z: 4.25, y: 0.36, x: 0.14 },
-    { id: "contact-v1", z: 3.98, y: 0.05, x: 0 }
+    { id: "v1-ch-pain", z: 5.92, y: -0.08, x: 0.14 },
+    { id: "v1-founder", z: 5.72, y: 0.56, x: -0.12 },
+    { id: "v1-ch1", z: 5.5, y: 0.38, x: -0.1 },
+    { id: "v1-ch-comp", z: 5.28, y: -0.12, x: 0.16 },
+    { id: "v1-ch2", z: 5.06, y: -0.18, x: 0.18 },
+    { id: "v1-ch3", z: 4.84, y: 0.46, x: -0.16 },
+    { id: "v1-ch4", z: 4.62, y: 0.14, x: 0.2 },
+    { id: "v1-ch5", z: 4.4, y: -0.24, x: -0.12 },
+    { id: "v1-ch6", z: 4.18, y: 0.34, x: 0.14 },
+    { id: "contact-v1", z: 3.92, y: 0.05, x: 0 }
   ];
   const mobileSectionConfigsV1 = [
     { id: "hero-v1", z: 7.15, y: 0.26, x: 0 },
-    { id: "v1-founder", z: 6.58, y: 0.78, x: -0.1 },
-    { id: "v1-ch1", z: 6.3, y: 0.65, x: -0.08 },
-    { id: "v1-ch-comp", z: 6.05, y: -0.22, x: 0.1 },
-    { id: "v1-ch2", z: 5.82, y: -0.26, x: 0.12 },
-    { id: "v1-ch3", z: 5.58, y: 0.78, x: -0.12 },
-    { id: "v1-ch4", z: 5.36, y: 0.24, x: 0.14 },
-    { id: "v1-ch5", z: 5.14, y: -0.34, x: -0.1 },
-    { id: "v1-ch6", z: 4.92, y: 0.66, x: 0.12 },
-    { id: "contact-v1", z: 4.68, y: 0.08, x: 0 }
+    { id: "v1-ch-pain", z: 6.68, y: -0.2, x: 0.08 },
+    { id: "v1-founder", z: 6.42, y: 0.76, x: -0.1 },
+    { id: "v1-ch1", z: 6.18, y: 0.64, x: -0.08 },
+    { id: "v1-ch-comp", z: 5.95, y: -0.22, x: 0.1 },
+    { id: "v1-ch2", z: 5.72, y: -0.26, x: 0.12 },
+    { id: "v1-ch3", z: 5.5, y: 0.76, x: -0.12 },
+    { id: "v1-ch4", z: 5.28, y: 0.24, x: 0.14 },
+    { id: "v1-ch5", z: 5.06, y: -0.34, x: -0.1 },
+    { id: "v1-ch6", z: 4.84, y: 0.64, x: 0.12 },
+    { id: "contact-v1", z: 4.6, y: 0.08, x: 0 }
   ];
   const threeSectionTriggers = [];
   const wireThreeSectionTriggers = () => {
