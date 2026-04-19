@@ -458,18 +458,20 @@ gsap.utils.toArray(".deck-section").forEach((section) => {
   }
 });
 
-gsap.from("#chapter-founder .founder-stat, #v1-founder .founder-stat", {
-  opacity: 0,
-  y: 24,
-  scale: 0.95,
-  duration: 0.62,
-  stagger: 0.1,
-  ease: "power2.out",
-  scrollTrigger: {
-    trigger: "#chapter-founder, #v1-founder",
-    start: "top 78%",
-    once: true
-  }
+["#chapter-founder", "#v1-founder"].forEach((triggerSel) => {
+  gsap.from(`${triggerSel} .founder-stat`, {
+    opacity: 0,
+    y: 24,
+    scale: 0.95,
+    duration: 0.62,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: triggerSel,
+      start: "top 78%",
+      once: true
+    }
+  });
 });
 
 gsap.from(".funnel-step", {
