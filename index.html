@@ -8,7 +8,7 @@
       name="description"
       content="AI跨境出海操作系统投资人展示页面。"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260415c" />
+    <link rel="stylesheet" href="./styles.css?v=20260416d" />
   </head>
   <body>
     <canvas id="three-canvas" aria-hidden="true"></canvas>
@@ -16,10 +16,134 @@
     <div class="mouse-glow" id="mouse-glow"></div>
     <div class="vignette-layer"></div>
     <div class="scene-label" id="scene-label"></div>
+    <div class="version-strip" role="tablist" aria-label="版本切换">
+      <button type="button" class="version-pill is-active" data-version="v1" role="tab" aria-selected="true" id="tab-v1">v1</button>
+      <span class="version-sep" aria-hidden="true">·</span>
+      <button type="button" class="version-pill" data-version="v0" role="tab" aria-selected="false" id="tab-v0">v0</button>
+    </div>
     <div class="scroll-progress"><i id="scroll-progress-bar"></i></div>
     <nav class="side-nav" id="side-nav"></nav>
 
     <main class="page">
+      <div id="deck-v1" class="deck-tab deck-tab--active" data-deck="v1">
+      <header class="deck-section hero" id="hero-v1">
+        <p class="eyebrow stagger">BLUE WHALE · BULK EXPORT</p>
+        <h1 class="stagger">蓝鲸出海</h1>
+        <p class="hero-sub stagger">全球大物出海一站式解决方案</p>
+        <p class="hero-desc stagger">
+          各位投资人，大家好！我此前深耕小商品出海，成功操盘多个项目并实现项目出售变现，积攒了成熟的跨境运营经验与实战资源。依托英国生活经历与独立站操盘能力，我精准捕捉到一片尚未被充分挖掘的万亿蓝海——<strong>蓝鲸出海</strong>：作为<strong>大物出海</strong>赛道的先行者，我们凭借已验证的跨境实战经验与对海外市场的深度理解，做的是精准布局、确定性落地。
+        </p>
+        <div class="hero-metrics stagger">
+          <article class="metric-card"><strong>大物</strong><span>高客单 · 高毛利赛道</span></article>
+          <article class="metric-card"><strong>英国</strong><span>首发验证市场</span></article>
+          <article class="metric-card"><strong>独立站</strong><span>3D/VR · 私域 · 数据自有</span></article>
+        </div>
+        <div class="scroll-hint stagger">Scroll to continue</div>
+      </header>
+
+      <section class="deck-section layout-a" id="v1-ch1">
+        <div class="section-title stagger"><span>一</span><h2>赛道定位：从「小矿」到「大矿」</h2></div>
+        <p class="section-summary stagger">如果把小商品出海比作<strong>小矿</strong>——门槛低、易上手，但如今内卷严重、利润微薄；<strong>大物出海</strong>才是真正的高价值<strong>大矿</strong>，也是蓝鲸出海的核心赛道。</p>
+        <div class="chip-grid stagger-group">
+          <article class="chip-card stagger-item"><h3>体积与客单</h3><p>体积大、客单价高（平均约 2000–5000 英镑），毛利丰厚（约 40%–60%）。</p></article>
+          <article class="chip-card stagger-item"><h3>客户价值</h3><p>服务高净值人群，客户价值高；需专业售后或上门安装，体验壁垒强。</p></article>
+          <article class="chip-card stagger-item"><h3>竞争格局</h3><p>海外竞争相对小、门槛高，属于市场蓝海；能显著提升生活品质与幸福感。</p></article>
+          <article class="chip-card stagger-item"><h3>我们的角色</h3><p>不是盲目试错者，而是已验证操盘能力下的<strong>精准布局</strong>与<strong>确定性落地</strong>。</p></article>
+        </div>
+        <img class="media parallax" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1300&q=80" alt="大物出海" loading="lazy" />
+      </section>
+
+      <section class="deck-section layout-d" id="v1-ch2">
+        <div class="section-title stagger"><span>二</span><h2>万亿级市场需求与数字佐证</h2></div>
+        <p class="section-summary stagger">英国大物市场正迎来爆发期，供需严重失衡——数据足以说明这是黄金赛道。</p>
+        <div class="numbered-list stagger-group">
+          <p class="stagger-item"><b>1.</b> 超大件物流需求激增：据英国物流协会（Logistics UK）数据，2025 年英国体积超 0.5 立方米或单件重量超 30 公斤的「超大件」货物年增速达 <strong>18%</strong>；中国直发英国超大件物流订单量同比增长 <strong>47.2%</strong>，其中家居品类占比超 <strong>62%</strong>。</p>
+          <p class="stagger-item"><b>2.</b> 细分品类规模可观：英国灯具市场约占欧洲 <strong>19%</strong>，2025 年 LED 照明零售市场规模达 <strong>26 亿英镑</strong>，高端吊灯与水晶灯年增速超 <strong>12%</strong>；水龙头市场 2024 年规模约 <strong>10.5 亿美元</strong>，预计 2033 年增至 <strong>18.8 亿美元</strong>（CAGR <strong>6.3%</strong>），即热水龙头等高端品类增速超 <strong>15%</strong>；庭院喷泉等花园高端单品英国年销售额超 <strong>3 亿英镑</strong>，中国产品渗透率不足 <strong>5%</strong>，增长空间巨大。</p>
+          <p class="stagger-item"><b>3.</b> 消费升级驱动：英国电商交易额约 <strong>1770 亿美元</strong>（约 1440 亿英镑），线上消费习惯成熟；约 <strong>68%</strong> 高净值家庭愿为高品质家居大物支付溢价，<strong>72%</strong> 消费者表示本地难买到符合预期的高端大物。</p>
+        </div>
+        <div class="stats-grid stagger">
+          <article><strong class="count" data-value="18" data-suffix="%">18%</strong><span>英国超大件年增速</span></article>
+          <article><strong>47.2%</strong><span>中国直英超大件订单增速</span></article>
+          <article><strong class="count" data-value="62" data-suffix="%">62%</strong><span>家居品类占比</span></article>
+        </div>
+        <img class="media parallax" src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1300&q=80" alt="市场数据" loading="lazy" />
+      </section>
+
+      <section class="deck-section layout-e" id="v1-ch3">
+        <div class="section-title stagger"><span>三</span><h2>为什么选择独立站？为什么现在？</h2></div>
+        <p class="section-summary stagger">（一）独立站：大物出海的最优解</p>
+        <div class="chip-grid stagger-group">
+          <article class="chip-card stagger-item"><h3>极致体验</h3><p>3D/VR 沉浸式选购，适配大物决策，转化率提升 <strong>40%+</strong>。</p></article>
+          <article class="chip-card stagger-item"><h3>品牌沉淀</h3><p>摆脱平台束缚，品牌溢价提升约 <strong>30%–50%</strong>。</p></article>
+          <article class="chip-card stagger-item"><h3>数据自有</h3><p>客户与交易数据全留存，复购率提升 <strong>25%+</strong>。</p></article>
+          <article class="chip-card stagger-item"><h3>私域与 LTV</h3><p>私域运营，客户终身价值（LTV）提升 <strong>60%+</strong>；利润率可达平台店铺的 <strong>2–3 倍</strong>。</p></article>
+        </div>
+        <p class="section-summary stagger">（二）紧迫感：窗口期已开</p>
+        <div class="numbered-list stagger-group">
+          <p class="stagger-item"><b>1.</b> 供需失衡：高端大物严重供不应求，约 <strong>90%</strong> 依赖进口；中国与海外价差约 <strong>3–8 倍</strong>。</p>
+          <p class="stagger-item"><b>2.</b> 竞争真空：大物出海玩家不足 <strong>5 家</strong>，尚未形成头部垄断，可建立 <strong>2–3 年</strong>先发优势。</p>
+          <p class="stagger-item"><b>3.</b> 政策与成本：2026 年英国家居类进口关税下调、大件清关效率提升约 <strong>30%</strong>；AI 降低建站成本约 <strong>60%</strong>，3D/VR 内容成本降低约 <strong>75%</strong>。</p>
+          <p class="stagger-item"><b>4.</b> 爆发前夜：中国对欧洲超大件出口 CAGR 约 <strong>28%</strong>，预计 2027 年迎来爆发式增长。</p>
+        </div>
+        <div class="inline-detail stagger">
+          <p>为何亚马逊、拼多多难做大物？平台从展示、流量、物流到售后<strong>整套体系围绕小商品</strong>，缺乏大件运输、上门安装与专业售后，<strong>天生无法满足大物需求</strong>。</p>
+          <p>国内优质大物商家想自主出海却面临长链条门槛——<strong>约 95%</strong> 无法独自完成，这正是我们的机会。</p>
+        </div>
+        <img class="media wide parallax" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1300&q=80" alt="独立站与窗口期" loading="lazy" />
+      </section>
+
+      <section class="deck-section layout-c" id="v1-ch4">
+        <div class="section-title stagger"><span>四</span><h2>核心落地方案：自营打样 → 超级铲子 → 平台化</h2></div>
+        <p class="section-summary stagger">从自营大物独立站验证盈利，到打磨可复制的「超级铲子」，最终开放赋能、指数增长。</p>
+        <div class="timeline stagger-group">
+          <article class="timeline-card stagger-item"><b>第一步（0–12 个月）</b><p>自营大物独立站，优先英国；聚焦<strong>灯具、即热水龙头、花园喷泉</strong>三大品类，分批垂直站。首站：供应链、大件物流清关、AI/VR 展示；安装售后初期对接海外蓝领平台 API，<strong>24 小时内</strong>响应，后建自有团队。单站目标：<strong>年销 1000 万且盈利</strong>（毛利率 <strong>45%+</strong>，净利率 <strong>15%+</strong>），跑通后交专业团队放大。</p></article>
+          <article class="timeline-card stagger-item"><b>第二步（12–18 个月）</b><p>三站均达成千万级盈利后，整合数据与供应链，将全流程<strong>标准化、系统化</strong>——从 AI 建站、3D/VR、大件物流到本地安装与售后，锻造<strong>大物出海超级铲子</strong>。</p></article>
+          <article class="timeline-card stagger-item"><b>第三步（18 个月以后）</b><p>开放赋能「卖铲子」：年费（<strong>1–5 万/年</strong>）、交易佣金（<strong>3%–8%</strong>）、增值服务；从自营线性增长升级为<strong>平台化、规模化</strong>的长期收益。</p></article>
+        </div>
+        <img class="media parallax" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1300&q=80" alt="落地方案" loading="lazy" />
+      </section>
+
+      <section class="deck-section layout-e" id="v1-ch5">
+        <div class="section-title stagger"><span>五</span><h2>融资与股权规划</h2></div>
+        <p class="section-summary stagger">小步快跑、阶段出成果；每一轮对应明确落地目标。</p>
+        <div class="numbered-list stagger-group">
+          <p class="stagger-item"><b>第一轮：</b>融资 <strong>200 万</strong>，出让 <strong>5%</strong> 股权，专款投入<strong>首个灯具垂直大物独立站</strong>全链路（建站、备货、跨境物流、投放、本地安装售后），冲刺 <strong>1 年 1000 万营业额且盈利</strong>，验证商业闭环。</p>
+          <p class="stagger-item"><b>第二、三轮：</b>首轮目标达成后，依次启动，每轮 <strong>200 万</strong>，股权据估值与经营数据协商；分别用于<strong>即热水龙头</strong>、<strong>花园喷泉</strong>独立站规模化，持续夯实自营与「超级铲子」体系。</p>
+          <p class="stagger-item"><b>后期：</b>三站均达千万级后，进入平台化阶段，启动更大规模融资，用于开放推广、团队扩张与全球市场布局。</p>
+        </div>
+        <div class="stats-grid stagger">
+          <article><strong>200万</strong><span>首轮金额</span></article>
+          <article><strong>5%</strong><span>首轮出让股权</span></article>
+          <article><strong>1000万</strong><span>单站年销目标</span></article>
+        </div>
+        <img class="media wide parallax" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1300&q=80" alt="融资规划" loading="lazy" />
+      </section>
+
+      <section class="deck-section layout-a" id="v1-ch6">
+        <div class="section-title stagger"><span>六</span><h2>核心优势与愿景</h2></div>
+        <p class="section-summary stagger">蓝鲸出海作为大物出海先行者，以成熟实战经验规避试错，以独立站优势筑牢根基；先垂直站点盈利打样板，再平台化撬动万亿市场。</p>
+        <div class="highlight-grid stagger-group">
+          <div class="stagger-item">可落地的短期盈利模式 + 高天花板长期平台价值</div>
+          <div class="stagger-item">自营验证 → 标准化「超级铲子」→ 开放赋能指数增长</div>
+          <div class="stagger-item">让中国优质大物轻松走向全球</div>
+        </div>
+        <div class="inline-detail stagger">
+          <p>我们既具备<strong>短期可验证的盈利路径</strong>，又具备<strong>基础设施级长期壁垒</strong>，诚邀各位投资人携手，共启大物出海新蓝海。</p>
+        </div>
+        <img class="media parallax" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1300&q=80" alt="愿景" loading="lazy" />
+      </section>
+
+      <section class="deck-section cta" id="contact-v1">
+        <h2>任源</h2>
+        <p>蓝鲸出海 · 全球大物一站式解决方案</p>
+        <div class="cta-actions">
+          <a class="primary-btn" href="mailto:yuanren0715@gmail.com">yuanren0715@gmail.com</a>
+          <a class="ghost-btn" href="#hero-v1">回到顶部</a>
+        </div>
+      </section>
+      </div>
+
+      <div id="deck-v0" class="deck-tab" hidden data-deck="v0">
       <header class="deck-section hero" id="hero">
         <p class="eyebrow stagger">AI CROSS-BORDER EXPORT OPERATING SYSTEM</p>
         <h1 class="stagger">AI跨境出海操作系统，</h1>
@@ -341,10 +465,11 @@
           <a class="ghost-btn" href="#hero">回到顶部</a>
         </div>
       </section>
+      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.min.js"></script>
-    <script src="./script.js?v=20260415c"></script>
+    <script src="./script.js?v=20260416d"></script>
   </body>
 </html>

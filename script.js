@@ -1,6 +1,16 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const navItems = [
+const NAV_V1 = [
+  "hero-v1",
+  "v1-ch1",
+  "v1-ch2",
+  "v1-ch3",
+  "v1-ch4",
+  "v1-ch5",
+  "v1-ch6",
+  "contact-v1"
+];
+const NAV_V0 = [
   "hero",
   "features",
   "chapter-2",
@@ -17,6 +27,12 @@ const navItems = [
   "contact"
 ];
 
+const NAV_BY_DECK = { v1: NAV_V1, v0: NAV_V0 };
+
+let currentDeck = "v1";
+let navItems = NAV_BY_DECK[currentDeck];
+let navButtons = [];
+
 const sideNav = document.getElementById("side-nav");
 const progressBar = document.getElementById("scroll-progress-bar");
 const mouseGlow = document.getElementById("mouse-glow");
@@ -28,17 +44,108 @@ if (isMobile) {
   document.body.classList.add("is-mobile");
 }
 
-navItems.forEach((id, idx) => {
-  const btn = document.createElement("button");
-  btn.textContent = idx === 0 ? "封" : idx === navItems.length - 1 ? "联" : String(idx);
-  btn.type = "button";
-  btn.addEventListener("click", () => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+let refreshThreeSectionTriggers = () => {};
+let heroScrubTween = null;
+let contactEntranceTween = null;
+
+function rebuildNav() {
+  navItems = NAV_BY_DECK[currentDeck];
+  sideNav.innerHTML = "";
+  navItems.forEach((id, idx) => {
+    const btn = document.createElement("button");
+    btn.textContent = idx === 0 ? "封" : idx === navItems.length - 1 ? "联" : String(idx);
+    btn.type = "button";
+    btn.addEventListener("click", () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    sideNav.appendChild(btn);
   });
-  sideNav.appendChild(btn);
+  navButtons = Array.from(sideNav.querySelectorAll("button"));
+}
+
+function switchDeck(version) {
+  if (version === currentDeck) return;
+  currentDeck = version;
+  const deckV0 = document.getElementById("deck-v0");
+  const deckV1 = document.getElementById("deck-v1");
+  const tabV0 = document.getElementById("tab-v0");
+  const tabV1 = document.getElementById("tab-v1");
+  if (version === "v1") {
+    deckV1.hidden = false;
+    deckV1.classList.add("deck-tab--active");
+    deckV0.hidden = true;
+    deckV0.classList.remove("deck-tab--active");
+    tabV1.setAttribute("aria-selected", "true");
+    tabV1.classList.add("is-active");
+    tabV0.setAttribute("aria-selected", "false");
+    tabV0.classList.remove("is-active");
+  } else {
+    deckV0.hidden = false;
+    deckV0.classList.add("deck-tab--active");
+    deckV1.hidden = true;
+    deckV1.classList.remove("deck-tab--active");
+    tabV0.setAttribute("aria-selected", "true");
+    tabV0.classList.add("is-active");
+    tabV1.setAttribute("aria-selected", "false");
+    tabV1.classList.remove("is-active");
+  }
+  rebuildNav();
+  refreshThreeSectionTriggers();
+  wireHeroScrub();
+  wireContactEntrance();
+  ScrollTrigger.refresh();
+  window.scrollTo({ top: 0, behavior: "instant" });
+  setProgress();
+  setActiveNav();
+}
+
+document.querySelectorAll(".version-pill").forEach((pill) => {
+  pill.addEventListener("click", () => switchDeck(pill.dataset.version));
 });
 
-const navButtons = Array.from(sideNav.querySelectorAll("button"));
+rebuildNav();
+
+function wireHeroScrub() {
+  if (heroScrubTween) {
+    heroScrubTween.scrollTrigger?.kill();
+    heroScrubTween.kill();
+    heroScrubTween = null;
+  }
+  const heroEl = document.querySelector(".deck-tab:not([hidden]) .deck-section.hero");
+  if (!heroEl) return;
+  heroScrubTween = gsap.to(heroEl, {
+    y: isMobile ? -16 : -24,
+    opacity: isMobile ? 0.985 : 0.97,
+    ease: "none",
+    scrollTrigger: {
+      trigger: heroEl,
+      start: "top top",
+      end: isMobile ? "bottom 68%" : "bottom 62%",
+      scrub: true
+    }
+  });
+}
+
+function wireContactEntrance() {
+  if (contactEntranceTween) {
+    contactEntranceTween.scrollTrigger?.kill();
+    contactEntranceTween.kill();
+    contactEntranceTween = null;
+  }
+  const cta = document.querySelector(".deck-tab:not([hidden]) .deck-section.cta");
+  if (!cta) return;
+  contactEntranceTween = gsap.from(cta.querySelectorAll(":scope > *"), {
+    opacity: 0,
+    y: 36,
+    duration: 1,
+    ease: "power2.out",
+    stagger: 0.16,
+    scrollTrigger: {
+      trigger: cta,
+      start: "top 80%"
+    }
+  });
+}
 
 const setActiveNav = () => {
   let active = 0;
@@ -50,7 +157,10 @@ const setActiveNav = () => {
   });
   navButtons.forEach((btn, i) => btn.classList.toggle("active", i === active));
   const activeEl = document.getElementById(navItems[active]);
-  const title = activeEl?.querySelector("h2")?.textContent || "Immersive Deck";
+  const title =
+    activeEl?.querySelector("h2")?.textContent ||
+    activeEl?.querySelector("h1")?.textContent ||
+    "Immersive Deck";
   sceneLabel.textContent = title;
 };
 
@@ -67,6 +177,7 @@ window.addEventListener("scroll", () => {
 window.addEventListener("resize", () => {
   setProgress();
   setActiveNav();
+  ScrollTrigger.refresh();
 });
 
 window.addEventListener("pointermove", (e) => {
@@ -206,7 +317,7 @@ const initThreeScene = () => {
   };
   window.addEventListener("resize", onResize);
 
-  const sectionConfigs = [
+  const sectionConfigsV0 = [
     { id: "hero", z: 6.6, y: 0.2, x: 0 },
     { id: "features", z: 5.8, y: 0.45, x: -0.1 },
     { id: "chapter-2", z: 5.4, y: -0.2, x: 0.2 },
@@ -222,7 +333,7 @@ const initThreeScene = () => {
     { id: "chapter-11", z: 3.46, y: 0.15, x: -0.18 },
     { id: "contact", z: 3.3, y: 0.05, x: 0 }
   ];
-  const mobileSectionConfigs = [
+  const mobileSectionConfigsV0 = [
     { id: "hero", z: 7.2, y: 0.28, x: 0 },
     { id: "features", z: 6.35, y: 0.72, x: -0.08 },
     { id: "chapter-2", z: 6.1, y: -0.3, x: 0.14 },
@@ -238,26 +349,61 @@ const initThreeScene = () => {
     { id: "chapter-11", z: 4.16, y: 0.2, x: -0.12 },
     { id: "contact", z: 4.05, y: 0.08, x: 0 }
   ];
-  const activeSectionConfigs = isMobile ? mobileSectionConfigs : sectionConfigs;
-  activeSectionConfigs.forEach((cfg, idx) => {
-    ScrollTrigger.create({
-      trigger: `#${cfg.id}`,
-      start: "top 60%",
-      onEnter: () => {
-        const spinBoost = isMobile ? 1.02 : 0.85;
-        gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.85, ease: "power2.out" });
-        gsap.to(core.rotation, { y: core.rotation.y + spinBoost, duration: 0.85, ease: "power2.out" });
-        gsap.to(document.documentElement, {
-          "--theme-hue": `${(idx * 19) % 180}deg`,
-          duration: 0.7,
-          ease: "power2.out"
-        });
-      },
-      onEnterBack: () => {
-        gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.7, ease: "power2.out" });
-      }
+  const sectionConfigsV1 = [
+    { id: "hero-v1", z: 6.6, y: 0.2, x: 0 },
+    { id: "v1-ch1", z: 5.75, y: 0.42, x: -0.1 },
+    { id: "v1-ch2", z: 5.45, y: -0.18, x: 0.18 },
+    { id: "v1-ch3", z: 5.15, y: 0.52, x: -0.16 },
+    { id: "v1-ch4", z: 4.88, y: 0.18, x: 0.2 },
+    { id: "v1-ch5", z: 4.62, y: -0.28, x: -0.12 },
+    { id: "v1-ch6", z: 4.38, y: 0.4, x: 0.14 },
+    { id: "contact-v1", z: 4.1, y: 0.05, x: 0 }
+  ];
+  const mobileSectionConfigsV1 = [
+    { id: "hero-v1", z: 7.15, y: 0.26, x: 0 },
+    { id: "v1-ch1", z: 6.45, y: 0.68, x: -0.08 },
+    { id: "v1-ch2", z: 6.15, y: -0.28, x: 0.12 },
+    { id: "v1-ch3", z: 5.88, y: 0.82, x: -0.12 },
+    { id: "v1-ch4", z: 5.62, y: 0.28, x: 0.14 },
+    { id: "v1-ch5", z: 5.38, y: -0.38, x: -0.1 },
+    { id: "v1-ch6", z: 5.12, y: 0.7, x: 0.12 },
+    { id: "contact-v1", z: 4.88, y: 0.08, x: 0 }
+  ];
+  const threeSectionTriggers = [];
+  const wireThreeSectionTriggers = () => {
+    threeSectionTriggers.forEach((st) => st.kill());
+    threeSectionTriggers.length = 0;
+    const list =
+      currentDeck === "v1"
+        ? isMobile
+          ? mobileSectionConfigsV1
+          : sectionConfigsV1
+        : isMobile
+          ? mobileSectionConfigsV0
+          : sectionConfigsV0;
+    list.forEach((cfg, idx) => {
+      const st = ScrollTrigger.create({
+        trigger: `#${cfg.id}`,
+        start: "top 60%",
+        onEnter: () => {
+          const spinBoost = isMobile ? 1.02 : 0.85;
+          gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.85, ease: "power2.out" });
+          gsap.to(core.rotation, { y: core.rotation.y + spinBoost, duration: 0.85, ease: "power2.out" });
+          gsap.to(document.documentElement, {
+            "--theme-hue": `${(idx * 19) % 180}deg`,
+            duration: 0.7,
+            ease: "power2.out"
+          });
+        },
+        onEnterBack: () => {
+          gsap.to(camera.position, { x: cfg.x, y: cfg.y, z: cfg.z, duration: 0.7, ease: "power2.out" });
+        }
+      });
+      threeSectionTriggers.push(st);
     });
-  });
+  };
+  wireThreeSectionTriggers();
+  refreshThreeSectionTriggers = wireThreeSectionTriggers;
 
   return () => {
     cancelAnimationFrame(raf);
@@ -269,25 +415,13 @@ const initThreeScene = () => {
   };
 };
 
-gsap.from(".hero .stagger", {
+gsap.from(".deck-tab:not([hidden]) .hero .stagger", {
   opacity: 0,
   y: 30,
   scale: 0.98,
   duration: 0.8,
   stagger: 0.12,
   ease: "power2.out"
-});
-
-gsap.to("#hero", {
-  y: isMobile ? -16 : -24,
-  opacity: isMobile ? 0.985 : 0.97,
-  ease: "none",
-  scrollTrigger: {
-    trigger: "#hero",
-    start: "top top",
-    end: isMobile ? "bottom 68%" : "bottom 62%",
-    scrub: true
-  }
 });
 
 gsap.utils.toArray(".deck-section").forEach((section) => {
@@ -465,7 +599,7 @@ if (isMobile) {
   });
 }
 
-gsap.utils.toArray(".count").forEach((el) => {
+gsap.utils.toArray(".deck-tab:not([hidden]) .count").forEach((el) => {
   const value = Number(el.dataset.value || "");
   const suffix = el.dataset.suffix || "";
   if (!Number.isFinite(value)) return;
@@ -514,18 +648,8 @@ gsap.utils.toArray(".metric-card, .chip-card, .layer-card, .highlight-grid div, 
   });
 });
 
-gsap.from("#contact > *", {
-  opacity: 0,
-  y: 36,
-  duration: 1,
-  ease: "power2.out",
-  stagger: 0.16,
-  scrollTrigger: {
-    trigger: "#contact",
-    start: "top 80%"
-  }
-});
-
 initThreeScene();
+wireHeroScrub();
+wireContactEntrance();
 setProgress();
 setActiveNav();
