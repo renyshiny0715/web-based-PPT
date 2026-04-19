@@ -2,6 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const NAV_V1 = [
   "hero-v1",
+  "v1-founder",
   "v1-ch1",
   "v1-ch2",
   "v1-ch3",
@@ -351,23 +352,25 @@ const initThreeScene = () => {
   ];
   const sectionConfigsV1 = [
     { id: "hero-v1", z: 6.6, y: 0.2, x: 0 },
-    { id: "v1-ch1", z: 5.75, y: 0.42, x: -0.1 },
-    { id: "v1-ch2", z: 5.45, y: -0.18, x: 0.18 },
-    { id: "v1-ch3", z: 5.15, y: 0.52, x: -0.16 },
-    { id: "v1-ch4", z: 4.88, y: 0.18, x: 0.2 },
-    { id: "v1-ch5", z: 4.62, y: -0.28, x: -0.12 },
-    { id: "v1-ch6", z: 4.38, y: 0.4, x: 0.14 },
-    { id: "contact-v1", z: 4.1, y: 0.05, x: 0 }
+    { id: "v1-founder", z: 5.88, y: 0.58, x: -0.12 },
+    { id: "v1-ch1", z: 5.62, y: 0.4, x: -0.1 },
+    { id: "v1-ch2", z: 5.38, y: -0.16, x: 0.18 },
+    { id: "v1-ch3", z: 5.12, y: 0.5, x: -0.16 },
+    { id: "v1-ch4", z: 4.88, y: 0.16, x: 0.2 },
+    { id: "v1-ch5", z: 4.62, y: -0.26, x: -0.12 },
+    { id: "v1-ch6", z: 4.38, y: 0.38, x: 0.14 },
+    { id: "contact-v1", z: 4.05, y: 0.05, x: 0 }
   ];
   const mobileSectionConfigsV1 = [
     { id: "hero-v1", z: 7.15, y: 0.26, x: 0 },
-    { id: "v1-ch1", z: 6.45, y: 0.68, x: -0.08 },
-    { id: "v1-ch2", z: 6.15, y: -0.28, x: 0.12 },
-    { id: "v1-ch3", z: 5.88, y: 0.82, x: -0.12 },
-    { id: "v1-ch4", z: 5.62, y: 0.28, x: 0.14 },
-    { id: "v1-ch5", z: 5.38, y: -0.38, x: -0.1 },
-    { id: "v1-ch6", z: 5.12, y: 0.7, x: 0.12 },
-    { id: "contact-v1", z: 4.88, y: 0.08, x: 0 }
+    { id: "v1-founder", z: 6.58, y: 0.78, x: -0.1 },
+    { id: "v1-ch1", z: 6.28, y: 0.65, x: -0.08 },
+    { id: "v1-ch2", z: 6.0, y: -0.26, x: 0.12 },
+    { id: "v1-ch3", z: 5.74, y: 0.8, x: -0.12 },
+    { id: "v1-ch4", z: 5.48, y: 0.26, x: 0.14 },
+    { id: "v1-ch5", z: 5.24, y: -0.36, x: -0.1 },
+    { id: "v1-ch6", z: 5.0, y: 0.68, x: 0.12 },
+    { id: "contact-v1", z: 4.78, y: 0.08, x: 0 }
   ];
   const threeSectionTriggers = [];
   const wireThreeSectionTriggers = () => {
@@ -455,7 +458,7 @@ gsap.utils.toArray(".deck-section").forEach((section) => {
   }
 });
 
-gsap.from("#chapter-founder .founder-stat", {
+gsap.from("#chapter-founder .founder-stat, #v1-founder .founder-stat", {
   opacity: 0,
   y: 24,
   scale: 0.95,
@@ -463,7 +466,7 @@ gsap.from("#chapter-founder .founder-stat", {
   stagger: 0.1,
   ease: "power2.out",
   scrollTrigger: {
-    trigger: "#chapter-founder",
+    trigger: "#chapter-founder, #v1-founder",
     start: "top 78%",
     once: true
   }
