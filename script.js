@@ -116,17 +116,21 @@ function wireHeroScrub() {
   }
   const heroEl = document.querySelector(".deck-tab:not([hidden]) .deck-section.hero");
   if (!heroEl) return;
-  heroScrubTween = gsap.to(heroEl, {
-    y: isMobile ? -16 : -24,
-    opacity: isMobile ? 0.985 : 0.97,
-    ease: "none",
-    scrollTrigger: {
-      trigger: heroEl,
-      start: "top top",
-      end: isMobile ? "bottom 68%" : "bottom 62%",
-      scrub: true
+  heroScrubTween = gsap.fromTo(
+    heroEl,
+    { y: 0, opacity: 1 },
+    {
+      y: isMobile ? -16 : -24,
+      opacity: isMobile ? 0.985 : 0.97,
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroEl,
+        start: "top top",
+        end: isMobile ? "bottom 68%" : "bottom 62%",
+        scrub: true
+      }
     }
-  });
+  );
 }
 
 function wireContactEntrance() {
@@ -434,6 +438,8 @@ gsap.from(".deck-tab:not([hidden]) .hero .stagger", {
 });
 
 gsap.utils.toArray(".deck-section").forEach((section) => {
+  if (section.classList.contains("hero")) return;
+
   gsap.from(section, {
     opacity: 0,
     y: 34,
@@ -595,6 +601,8 @@ gsap.utils.toArray(".bar-fill-vertical").forEach((bar) => {
 
 if (isMobile) {
   gsap.utils.toArray(".deck-section").forEach((section) => {
+    if (section.classList.contains("hero")) return;
+
     gsap.to(section, {
       rotateX: -1.2,
       y: -4,
