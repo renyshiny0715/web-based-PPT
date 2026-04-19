@@ -94,7 +94,7 @@ function switchDeck(version) {
   wireHeroScrub();
   wireContactEntrance();
   ScrollTrigger.refresh();
-  window.scrollTo({ top: 0, behavior: "instant" });
+  window.scrollTo({ top: 0, behavior: "auto" });
   setProgress();
   setActiveNav();
 }
