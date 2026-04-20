@@ -1,5 +1,21 @@
 gsap.registerPlugin(ScrollTrigger);
 
+const NAV_V3 = [
+  "hero-v3",
+  "v3-ch1",
+  "v3-ch2",
+  "v3-ch3",
+  "v3-ch4",
+  "v3-ch5",
+  "v3-ch6",
+  "v3-ch7",
+  "v3-ch8",
+  "v3-ch9",
+  "v3-ch10",
+  "v3-ch11",
+  "v3-ch12",
+  "contact-v3"
+];
 const NAV_V1 = [
   "hero-v1",
   "v1-ch-pain",
@@ -30,9 +46,9 @@ const NAV_V0 = [
   "contact"
 ];
 
-const NAV_BY_DECK = { v1: NAV_V1, v0: NAV_V0 };
+const NAV_BY_DECK = { v3: NAV_V3, v1: NAV_V1, v0: NAV_V0 };
 
-let currentDeck = "v1";
+let currentDeck = "v3";
 let navItems = NAV_BY_DECK[currentDeck];
 let navButtons = [];
 
@@ -69,29 +85,16 @@ function rebuildNav() {
 function switchDeck(version) {
   if (version === currentDeck) return;
   currentDeck = version;
-  const deckV0 = document.getElementById("deck-v0");
-  const deckV1 = document.getElementById("deck-v1");
-  const tabV0 = document.getElementById("tab-v0");
-  const tabV1 = document.getElementById("tab-v1");
-  if (version === "v1") {
-    deckV1.hidden = false;
-    deckV1.classList.add("deck-tab--active");
-    deckV0.hidden = true;
-    deckV0.classList.remove("deck-tab--active");
-    tabV1.setAttribute("aria-selected", "true");
-    tabV1.classList.add("is-active");
-    tabV0.setAttribute("aria-selected", "false");
-    tabV0.classList.remove("is-active");
-  } else {
-    deckV0.hidden = false;
-    deckV0.classList.add("deck-tab--active");
-    deckV1.hidden = true;
-    deckV1.classList.remove("deck-tab--active");
-    tabV0.setAttribute("aria-selected", "true");
-    tabV0.classList.add("is-active");
-    tabV1.setAttribute("aria-selected", "false");
-    tabV1.classList.remove("is-active");
-  }
+  document.querySelectorAll(".deck-tab").forEach((deck) => {
+    const isActive = deck.dataset.deck === version;
+    deck.hidden = !isActive;
+    deck.classList.toggle("deck-tab--active", isActive);
+  });
+  document.querySelectorAll(".version-pill").forEach((pill) => {
+    const isActive = pill.dataset.version === version;
+    pill.setAttribute("aria-selected", isActive ? "true" : "false");
+    pill.classList.toggle("is-active", isActive);
+  });
   rebuildNav();
   refreshThreeSectionTriggers();
   wireHeroScrub();
@@ -382,18 +385,53 @@ const initThreeScene = () => {
     { id: "v1-ch6", z: 4.84, y: 0.64, x: 0.12 },
     { id: "contact-v1", z: 4.6, y: 0.08, x: 0 }
   ];
+  const sectionConfigsV3 = [
+    { id: "hero-v3", z: 6.6, y: 0.2, x: 0 },
+    { id: "v3-ch1", z: 5.95, y: 0.5, x: -0.1 },
+    { id: "v3-ch2", z: 5.76, y: -0.15, x: 0.18 },
+    { id: "v3-ch3", z: 5.58, y: 0.58, x: -0.14 },
+    { id: "v3-ch4", z: 5.38, y: 0.18, x: 0.2 },
+    { id: "v3-ch5", z: 5.18, y: -0.2, x: -0.12 },
+    { id: "v3-ch6", z: 4.98, y: 0.42, x: 0.16 },
+    { id: "v3-ch7", z: 4.78, y: -0.15, x: -0.16 },
+    { id: "v3-ch8", z: 4.58, y: 0.35, x: 0.14 },
+    { id: "v3-ch9", z: 4.38, y: -0.22, x: -0.12 },
+    { id: "v3-ch10", z: 4.2, y: 0.28, x: 0.16 },
+    { id: "v3-ch11", z: 4.02, y: -0.15, x: -0.1 },
+    { id: "v3-ch12", z: 3.84, y: 0.24, x: 0.14 },
+    { id: "contact-v3", z: 3.68, y: 0.06, x: 0 }
+  ];
+  const mobileSectionConfigsV3 = [
+    { id: "hero-v3", z: 7.15, y: 0.26, x: 0 },
+    { id: "v3-ch1", z: 6.72, y: 0.78, x: -0.08 },
+    { id: "v3-ch2", z: 6.52, y: -0.24, x: 0.12 },
+    { id: "v3-ch3", z: 6.34, y: 0.9, x: -0.12 },
+    { id: "v3-ch4", z: 6.14, y: 0.3, x: 0.14 },
+    { id: "v3-ch5", z: 5.94, y: -0.3, x: -0.1 },
+    { id: "v3-ch6", z: 5.74, y: 0.72, x: 0.12 },
+    { id: "v3-ch7", z: 5.56, y: -0.24, x: -0.12 },
+    { id: "v3-ch8", z: 5.38, y: 0.64, x: 0.1 },
+    { id: "v3-ch9", z: 5.2, y: -0.28, x: -0.08 },
+    { id: "v3-ch10", z: 5.02, y: 0.52, x: 0.1 },
+    { id: "v3-ch11", z: 4.84, y: -0.2, x: -0.08 },
+    { id: "v3-ch12", z: 4.68, y: 0.46, x: 0.1 },
+    { id: "contact-v3", z: 4.5, y: 0.08, x: 0 }
+  ];
   const threeSectionTriggers = [];
   const wireThreeSectionTriggers = () => {
     threeSectionTriggers.forEach((st) => st.kill());
     threeSectionTriggers.length = 0;
-    const list =
-      currentDeck === "v1"
-        ? isMobile
-          ? mobileSectionConfigsV1
-          : sectionConfigsV1
-        : isMobile
-          ? mobileSectionConfigsV0
-          : sectionConfigsV0;
+    const desktopConfigs = {
+      v3: sectionConfigsV3,
+      v1: sectionConfigsV1,
+      v0: sectionConfigsV0
+    };
+    const mobileConfigs = {
+      v3: mobileSectionConfigsV3,
+      v1: mobileSectionConfigsV1,
+      v0: mobileSectionConfigsV0
+    };
+    const list = isMobile ? mobileConfigs[currentDeck] : desktopConfigs[currentDeck];
     list.forEach((cfg, idx) => {
       const st = ScrollTrigger.create({
         trigger: `#${cfg.id}`,
@@ -470,7 +508,7 @@ gsap.utils.toArray(".deck-section").forEach((section) => {
   }
 });
 
-["#chapter-founder", "#v1-founder"].forEach((triggerSel) => {
+["#chapter-founder", "#v1-founder", "#v3-ch3"].forEach((triggerSel) => {
   gsap.from(`${triggerSel} .founder-stat`, {
     opacity: 0,
     y: 24,
