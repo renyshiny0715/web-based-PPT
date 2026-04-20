@@ -455,6 +455,7 @@ h1 { margin: 0; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.06; }
 .contact-person { margin: 0 0 6px; font-size: 1.85rem; font-weight: 700; color: #e8f4ff; letter-spacing: 0.02em; }
 .contact-tagline { margin: 0 0 10px; color: #9cd6ff; font-weight: 600; }
 .contact-hint { margin: 0 0 4px; font-size: 0.9rem; color: #7a9bc4; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+#contact-v3 .cta-actions { margin-bottom: 16px; }
 .primary-btn, .ghost-btn {
   border-radius: 12px; padding: 10px 14px; text-decoration: none; font-weight: 700; transition: .25s ease;
 }
